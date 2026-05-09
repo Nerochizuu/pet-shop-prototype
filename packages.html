@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packages</title>
+  <link rel="stylesheet" href="packages.css" />
+</head>
+<body>
+ 
+    <div class = "navbar">
+    <div class = "navbar-inner">    
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="aboutus.html">About us</a>
+      <a href="packages.html" class="active">Packages</a>
+    </div>
+    <input type = "text" class="search-box" placeholder="Search..">
+
+</div>
+</div>
+  
+ 
+  <div class="content">
+    <div class="page-header">
+      <h1>Our packages</h1>
+      <p>Choose the perfect care plan for your furry friend</p>
+    </div>
+ 
+    <div class="packages-grid">
+ 
+      <!-- Basic Grooming -->
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon teal">🛁</div>
+          <div>
+            <div class="pkg-name">Basic Grooming</div>
+            <span class="pkg-tag tag-teal">Most popular</span>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <p class="pkg-desc">A refreshing clean-up session to keep your pet looking and smelling great.</p>
+          <div class="pkg-features">
+            <div class="feat-row"><i class="ti ti-check"></i> Bath &amp; blow dry</div>
+            <div class="feat-row"><i class="ti ti-check"></i> Nail trimming</div>
+            <div class="feat-row"><i class="ti ti-check"></i> Ear cleaning</div>
+            <div class="feat-row"><i class="ti ti-clock"></i> ~1.5 hours</div>
+          </div>
+        </div>
+        <div class="pkg-footer">
+          <div class="pkg-price">&#8369;450 <span>/ session</span></div>
+          <button class="book-btn" onclick="openModal()">Book now</button>
+        </div>
+      </div>
+ 
+      <!-- Full Grooming -->
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon amber">✂️</div>
+          <div>
+            <div class="pkg-name">Full Grooming</div>
+            <span class="pkg-tag tag-amber">Premium</span>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <p class="pkg-desc">Complete grooming with a breed-appropriate haircut and styling by our expert groomers.</p>
+          <div class="pkg-features">
+            <div class="feat-row"><i class="ti ti-check"></i> Everything in basic</div>
+            <div class="feat-row"><i class="ti ti-check"></i> Haircut &amp; styling</div>
+            <div class="feat-row"><i class="ti ti-check"></i> Teeth brushing</div>
+            <div class="feat-row"><i class="ti ti-clock"></i> ~3 hours</div>
+          </div>
+        </div>
+        <div class="pkg-footer">
+          <div class="pkg-price">&#8369;850 <span>/ session</span></div>
+          <button class="book-btn" onclick="openModal()">Book now</button>
+        </div>
+      </div>
+ 
+      <!-- Wellness Check -->
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon pink">🏥</div>
+          <div>
+            <div class="pkg-name">Wellness Check</div>
+            <span class="pkg-tag tag-pink">Health</span>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <p class="pkg-desc">A routine health assessment to catch issues early and keep your pet in top condition.</p>
+          <div class="pkg-features">
+            <div class="feat-row"><i class="ti ti-check"></i> Physical exam</div>
+            <div class="feat-row"><i class="ti ti-check"></i> Weight &amp; vitals check</div>
+            <div class="feat-row"><i class="ti ti-check"></i> Vet consultation</div>
+            <div class="feat-row"><i class="ti ti-clock"></i> ~45 minutes</div>
+          </div>
+        </div>
+        <div class="pkg-footer">
+          <div class="pkg-price">&#8369;600 <span>/ visit</span></div>
+          <button class="book-btn" onclick="openModal()">Book now</button>
+        </div>
+      </div>
+ 
+      <!-- Boarding -->
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon blue">🏠</div>
+          <div>
+            <div class="pkg-name">Boarding</div>
+            <span class="pkg-tag tag-blue">Overnight</span>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <p class="pkg-desc">Safe, comfortable overnight stays with supervised playtime and feeding schedules.</p>
+          <div class="pkg-features">
+            <div class="feat-row"><i class="ti ti-check"></i> Private sleeping area</div>
+            <div class="feat-row"><i class="ti ti-check"></i> 3&times; daily feeding</div>
+            <div class="feat-row"><i class="ti ti-check"></i> Playtime &amp; exercise</div>
+            <div class="feat-row"><i class="ti ti-clock"></i> Per night</div>
+          </div>
+        </div>
+        <div class="pkg-footer">
+          <div class="pkg-price">&#8369;700 <span>/ night</span></div>
+          <button class="book-btn" onclick="openModal()">Book now</button>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+</body>
+
+<div id="appointmentModal" class="modal">
+    <div class="modal-content">
+  
+        <form class="appointment-form">
+
+            <h2>Schedule Appointment</h2>
+        
+            <div class="form-row">
+                <div>
+                    <label>First Name</label>
+                    <input type="text">
+                </div>
+        
+                <div>
+                    <label>Last Name</label>
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class ="form-row">
+                <div>
+                    <label>Email</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label>Contact Number</label>
+                    <input type="number">
+                </div>
+            </div>
+        
+            <div class="form-row">
+                <div>
+                    <label>Date</label>
+                    <input type="date">
+                </div>
+        
+                <div>
+                    <label>Time</label>
+                    <input type="time">
+                </div>
+            </div>
+        
+            <div class="modal-buttons">
+                <button type="button" onclick="closeModal()">Cancel</button>
+                <button type="submit">Save</button>
+            </div>
+        
+        </form>
+      
+      <script>
+        function openModal() {
+            document.getElementById("appointmentModal").style.display = "flex";
+        }
+        
+        function closeModal() {
+            document.getElementById("appointmentModal").style.display = "none";
+        }
+        </script>
+
+        <script>
+            window.onclick = function(event) {
+                let modal = document.getElementById("appointmentModal");
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+            </script>
+    </div>
+  </div>
+</html>
+ 
