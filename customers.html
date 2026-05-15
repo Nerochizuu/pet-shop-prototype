@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customers – PawPriority Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
+</head>
+<body>
+<div class="dash">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item active"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>Customers &amp; Pets</h1>
+      <div class="topbar-right">
+        <span class="topbar-date">Friday, May 15, 2026</span>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-users" aria-hidden="true"></i> Total customers</div>
+        <div class="metric-value">100</div>
+        <div class="metric-sub">Recorded Customers</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-paw" aria-hidden="true"></i> Total pets</div>
+        <div class="metric-value">100</div>
+        <div class="metric-sub">Across all customers</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-user-plus" aria-hidden="true"></i> New this month</div>
+        <div class="metric-value">14</div>
+        <div class="metric-sub">New registrations</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-repeat" aria-hidden="true"></i> Returning</div>
+        <div class="metric-value">89%</div>
+        <div class="metric-sub">Repeat customers</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><i class="ti ti-users" aria-hidden="true"></i>Customer records</span>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Search by name or pet...</div>
+          <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Filter</div>
+          <button class="add-btn"><i class="ti ti-plus" aria-hidden="true"></i> Add customer</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Contact</th>
+              <th>Pets</th>
+              <th>Last visit</th>
+              <th>Total visits</th>
+              <th>Total spent</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="td-name">Maria Santos</div><div class="td-sub">Since Jan 2024</div></td>
+              <td><div>maria@email.com</div><div class="td-sub">+63 912 345 6789</div></td>
+              <td><span class="badge badge-blue">Buddy</span></td>
+              <td>May 15, 2026</td>
+              <td>18</td>
+              <td>&#8369;12,400</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Jose Reyes</div><div class="td-sub">Since Mar 2024</div></td>
+              <td><div>jose@email.com</div><div class="td-sub">+63 917 234 5678</div></td>
+              <td><span class="badge badge-blue">Luna</span></td>
+              <td>May 15, 2026</td>
+              <td>11</td>
+              <td>&#8369;7,850</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Claire Tan</div><div class="td-sub">Since Jun 2024</div></td>
+              <td><div>claire@email.com</div><div class="td-sub">+63 918 765 4321</div></td>
+              <td><span class="badge badge-blue">Mochi</span> <span class="badge badge-blue">Nori</span></td>
+              <td>May 12, 2026</td>
+              <td>9</td>
+              <td>&#8369;6,200</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Ryan Lim</div><div class="td-sub">Since Aug 2024</div></td>
+              <td><div>ryan@email.com</div><div class="td-sub">+63 920 111 2233</div></td>
+              <td><span class="badge badge-blue">Max</span></td>
+              <td>May 15, 2026</td>
+              <td>6</td>
+              <td>&#8369;4,500</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Lea Garcia</div><div class="td-sub">Since Feb 2025</div></td>
+              <td><div>lea@email.com</div><div class="td-sub">+63 916 999 8877</div></td>
+              <td><span class="badge badge-blue">Coco</span></td>
+              <td>Apr 30, 2026</td>
+              <td>4</td>
+              <td>&#8369;2,800</td>
+              <td><span class="badge badge-amber">Inactive</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Paolo Cruz</div><div class="td-sub">Since Nov 2024</div></td>
+              <td><div>paolo@email.com</div><div class="td-sub">+63 919 555 6677</div></td>
+              <td><span class="badge badge-blue">Kobe</span></td>
+              <td>May 1, 2026</td>
+              <td>3</td>
+              <td>&#8369;1,950</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span>Showing 1 of 100 customers</span>
+        <div class="page-btns">
+          <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

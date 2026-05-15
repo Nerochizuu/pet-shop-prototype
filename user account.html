@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Accounts – PawShop Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
+</head>
+<body>
+<div class="dash">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawShop Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item active"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a> 
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>User Accounts</h1>
+      <div class="topbar-right">
+        <span class="topbar-date">Friday, May 15, 2026</span>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-users" aria-hidden="true"></i> Total accounts</div>
+        <div class="metric-value">15</div>
+        <div class="metric-sub">All system users</div>
+      </div>
+      
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-id-badge" aria-hidden="true"></i> Staff</div>
+        <div class="metric-value">8</div>
+        <div class="metric-sub">Active staff accounts</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-user-off" aria-hidden="true"></i> Deactivated</div>
+        <div class="metric-value">7</div>
+        <div class="metric-sub">Inactive accounts</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><i class="ti ti-user-circle" aria-hidden="true"></i>All user accounts</span>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Search by name or email...</div>
+          <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Role</div>
+          <button class="add-btn"><i class="ti ti-plus" aria-hidden="true"></i> Create account</button>
+        </div>
+      </div>
+
+      <div class="tab-row">
+        <div class="tab active">All (15)</div>
+        <div class="tab">Admins (1)</div>
+        <div class="tab">Staff (7)</div>
+        <div class="tab">Deactivated (7)</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Last login</th>
+              <th>Date joined</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="td-name">Admin User</div><div class="td-sub">System administrator</div></td>
+              <td>admin@pawshop.com</td>
+              <td><span class="badge badge-pink">Admin</span></td>
+              <td>May 15, 2026</td>
+              <td>Jan 1, 2024</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Anna Cruz</div><div class="td-sub">Senior Groomer</div></td>
+              <td>anna@pawshop.com</td>
+              <td><span class="badge badge-blue">Staff</span></td>
+              <td>May 15, 2026</td>
+              <td>Feb 10, 2024</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Deactivate"><i class="ti ti-user-off" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Ben Flores</div><div class="td-sub">Groomer</div></td>
+              <td>ben@pawshop.com</td>
+              <td><span class="badge badge-blue">Staff</span></td>
+              <td>May 15, 2026</td>
+              <td>Mar 5, 2024</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Deactivate"><i class="ti ti-user-off" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Carla Lopez</div><div class="td-sub">Groomer</div></td>
+              <td>carla@pawshop.com</td>
+              <td><span class="badge badge-blue">Staff</span></td>
+              <td>May 14, 2026</td>
+              <td>Apr 20, 2024</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Deactivate"><i class="ti ti-user-off" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Maria Santos</div><div class="td-sub">Groomer</div></td>
+              <td>maria@email.com</td>
+              <td><span class="badge badge-blue">Staff</span></td>
+              <td>May 15, 2026</td>
+              <td>Jan 12, 2024</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Deactivate"><i class="ti ti-user-off" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Jose Reyes</div><div class="td-sub">Groomer</div></td>
+              <td>jose@email.com</td>
+              <td><span class="badge badge-blue">Staff</span></td>
+              <td>May 15, 2026</td>
+              <td>Mar 22, 2024</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Deactivate"><i class="ti ti-user-off" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Dan Manalo</div><div class="td-sub">Grooming Assistant</div></td>
+              <td>dan@pawshop.com</td>
+              <td><span class="badge badge-blue">Staff</span></td>
+              <td>Apr 30, 2026</td>
+              <td>Jun 1, 2024</td>
+              <td><span class="badge badge-amber">Inactive</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Reactivate"><i class="ti ti-user-check" aria-hidden="true"></i></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span>Showing 1 of 15 accounts</span>
+        <div class="page-btns">
+          <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

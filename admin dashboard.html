@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – PawPriority</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="admin dashboard.css" />
+</head>
+<body>
+
+<div class="dash">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ti ti-paw" aria-hidden="true"></i> PawPriority
+      Admin
+    </div>
+    <a href="admin dashboard.html" class="nav-item active"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main class="main">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <h1>Good morning, Admin</h1>
+      <div class="topbar-right">
+        <span class="topbar-date">Friday, May 15, 2026</span>
+        <div class="notif-btn">
+          <i class="ti ti-bell" aria-hidden="true"></i>
+          <span class="notif-dot"></span>
+        </div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <!-- Metric cards -->
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-calendar-event" aria-hidden="true"></i> Today's appointments</div>
+        <div class="metric-value">12</div>
+        <div class="metric-sub">4 pending · 8 confirmed</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-cash" aria-hidden="true"></i> Today's sales</div>
+        <div class="metric-value">&#8369;8,450</div>
+        <div class="metric-sub">+12% vs yesterday</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-trending-up" aria-hidden="true"></i> Net profit (month)</div>
+        <div class="metric-value">&#8369;42,100</div>
+        <div class="metric-sub">Expenses: &#8369;18,300</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Low stock alerts</div>
+        <div class="metric-value">3</div>
+        <div class="metric-sub">Items need restocking</div>
+      </div>
+    </div>
+
+    <!-- Appointments + Side panels -->
+    <div class="grid-3">
+
+      <!-- Appointment schedule -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-calendar" aria-hidden="true"></i>Today's appointment schedule</span>
+          <span class="card-action">View all</span>
+        </div>
+        <div class="appt-row header">
+          <span>Customer / Pet</span>
+          <span>Groomer · Service</span>
+          <span>Time</span>
+          <span>Status</span>
+        </div>
+        <div class="appt-row">
+          <div><div class="appt-name">Maria Santos</div><div class="appt-pet">Buddy · Shih Tzu</div></div>
+          <div><div>Anna Cruz</div><div class="appt-sub">Full Grooming</div></div>
+          <div>9:00 AM</div>
+          <span class="badge badge-green">Done</span>
+        </div>
+        <div class="appt-row">
+          <div><div class="appt-name">Jose Reyes</div><div class="appt-pet">Luna · Poodle</div></div>
+          <div><div>Ben Flores</div><div class="appt-sub">Basic Grooming</div></div>
+          <div>10:30 AM</div>
+          <span class="badge badge-blue">In progress</span>
+        </div>
+        <div class="appt-row">
+          <div><div class="appt-name">Claire Tan</div><div class="appt-pet">Mochi · Pomeranian</div></div>
+          <div><div>Anna Cruz</div><div class="appt-sub">Full Grooming</div></div>
+          <div>1:00 PM</div>
+          <span class="badge badge-amber">Pending</span>
+        </div>
+        <div class="appt-row">
+          <div><div class="appt-name">Ryan Lim</div><div class="appt-pet">Max · Golden</div></div>
+          <div><div>Ben Flores</div><div class="appt-sub">Boarding</div></div>
+          <div>3:00 PM</div>
+          <span class="badge badge-amber">Pending</span>
+        </div>
+        <div class="appt-row">
+          <div><div class="appt-name">Lea Garcia</div><div class="appt-pet">Coco · Maltese</div></div>
+          <div><div>Anna Cruz</div><div class="appt-sub">Wellness Check</div></div>
+          <div>4:30 PM</div>
+          <span class="badge badge-gray">Scheduled</span>
+        </div>
+      </div>
+
+      <!-- Staff + Notifications -->
+      <div class="grid-3-right">
+
+        <!-- Staff availability -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title"><i class="ti ti-users" aria-hidden="true"></i>Staff availability</span>
+          </div>
+          <div class="staff-row">
+            <div class="staff-avatar">AC</div>
+            <div class="staff-info">
+              <div class="staff-name">Gelo Cruz</div>
+              <div class="staff-role">Senior Groomer</div>
+            </div>
+            <span class="badge badge-blue">Occupied</span>
+          </div>
+          <div class="staff-row">
+            <div class="staff-avatar">BF</div>
+            <div class="staff-info">
+              <div class="staff-name">Ben Flores</div>
+              <div class="staff-role">Groomer</div>
+            </div>
+            <span class="badge badge-blue">Occupied</span>
+          </div>
+          <div class="staff-row">
+            <div class="staff-avatar">CL</div>
+            <div class="staff-info">
+              <div class="staff-name">Carla Lopez</div>
+              <div class="staff-role">Groomer</div>
+            </div>
+            <span class="badge badge-green">Available</span>
+          </div>
+          <div class="staff-row">
+            <div class="staff-avatar">DM</div>
+            <div class="staff-info">
+              <div class="staff-name">Dan Manalo</div>
+              <div class="staff-role">Assistant</div>
+            </div>
+            <span class="badge badge-gray">Day off</span>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title"><i class="ti ti-bell" aria-hidden="true"></i>Notifications</span>
+            <span class="card-action">Mark all read</span>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:#FAEEDA; color:#854F0B;">
+              <i class="ti ti-box" aria-hidden="true"></i>
+            </div>
+            <div>
+              <div class="notif-text">Shampoo stock is critically low (2 left)</div>
+              <div class="notif-time">10 mins ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:#E6F1FB; color:#185FA5;">
+              <i class="ti ti-calendar-plus" aria-hidden="true"></i>
+            </div>
+            <div>
+              <div class="notif-text">New booking from Ryan Lim — Boarding, 3:00 PM</div>
+              <div class="notif-time">32 mins ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:#FBEAF0; color:#993556;">
+              <i class="ti ti-syringe" aria-hidden="true"></i>
+            </div>
+            <div>
+              <div class="notif-text">Mochi's rabies vaccine is overdue</div>
+              <div class="notif-time">1 hour ago</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Inventory + Sales chart -->
+    <div class="grid-2">
+
+      <!-- Inventory snapshot -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-box" aria-hidden="true"></i>Inventory snapshot</span>
+          <span class="card-action">View all</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Dog Shampoo</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:10%; background:#E24B4A;"></div></div>
+          <span class="inv-qty critical">2 left</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Nail Clippers</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:20%; background:#EF9F27;"></div></div>
+          <span class="inv-qty low">5 left</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Conditioner</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:25%; background:#EF9F27;"></div></div>
+          <span class="inv-qty low">7 left</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Ear Cleaner</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:60%; background:#1D9E75;"></div></div>
+          <span class="inv-qty">18 left</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Towels</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:75%; background:#1D9E75;"></div></div>
+          <span class="inv-qty">24 left</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-name">Grooming Spray</span>
+          <div class="inv-bar-wrap"><div class="inv-bar" style="width:80%; background:#1D9E75;"></div></div>
+          <span class="inv-qty">30 left</span>
+        </div>
+      </div>
+
+      <!-- Weekly sales chart -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-chart-line" aria-hidden="true"></i>Weekly sales</span>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-item">
+            <span class="legend-swatch" style="background:#b8896a;"></span> Sales (&#8369;)
+          </span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="salesChart" role="img" aria-label="Bar chart of weekly sales from Monday to Friday">
+            Weekly sales: Mon &#8369;5,200 · Tue &#8369;6,800 · Wed &#8369;4,900 · Thu &#8369;7,200 · Fri &#8369;8,450.
+          </canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Vaccination + Bookings breakdown -->
+    <div class="grid-2">
+
+      <!-- Vaccination status -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-syringe" aria-hidden="true"></i>Vaccination status overview</span>
+          <span class="card-action">View all</span>
+        </div>
+        <div class="vacc-row header">
+          <span>Pet / Owner</span>
+          <span>Vaccine</span>
+          <span>Status</span>
+        </div>
+        <div class="vacc-row">
+          <div><div class="vacc-pet">Mochi</div><div class="vacc-owner">Claire Tan</div></div>
+          <span class="vacc-name">Rabies</span>
+          <span class="badge badge-red">Overdue</span>
+        </div>
+        <div class="vacc-row">
+          <div><div class="vacc-pet">Buddy</div><div class="vacc-owner">Maria Santos</div></div>
+          <span class="vacc-name">Distemper</span>
+          <span class="badge badge-amber">Due soon</span>
+        </div>
+        <div class="vacc-row">
+          <div><div class="vacc-pet">Luna</div><div class="vacc-owner">Jose Reyes</div></div>
+          <span class="vacc-name">Bordetella</span>
+          <span class="badge badge-green">Up to date</span>
+        </div>
+        <div class="vacc-row">
+          <div><div class="vacc-pet">Max</div><div class="vacc-owner">Ryan Lim</div></div>
+          <span class="vacc-name">Rabies</span>
+          <span class="badge badge-green">Up to date</span>
+        </div>
+      </div>
+
+      <!-- Bookings breakdown chart -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-chart-pie" aria-hidden="true"></i>Bookings breakdown</span>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-item">
+            <span class="legend-swatch" style="background:#b8896a;"></span> Online 67%
+          </span>
+          <span class="legend-item">
+            <span class="legend-swatch" style="background:#e6d2be; border:0.5px solid #c6a98d;"></span> Walk-in 33%
+          </span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="bookingChart" role="img" aria-label="Doughnut chart showing 67% online bookings and 33% walk-in">
+            Bookings: 67% online, 33% walk-in.
+          </canvas>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  new Chart(document.getElementById('salesChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      datasets: [{
+        label: 'Sales',
+        data: [5200, 6800, 4900, 7200, 8450],
+        backgroundColor: '#b8896a',
+        borderRadius: 6,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 11 }, color: '#9a7a65' }
+        },
+        y: {
+          grid: { color: 'rgba(180,140,110,0.1)' },
+          ticks: {
+            font: { size: 11 },
+            color: '#9a7a65',
+            callback: v => '\u20B1' + (v / 1000).toFixed(0) + 'k'
+          }
+        }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('bookingChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Online', 'Walk-in'],
+      datasets: [{
+        data: [67, 33],
+        backgroundColor: ['#b8896a', '#e6d2be'],
+        borderColor: ['#b8896a', '#c6a98d'],
+        borderWidth: 1,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '65%',
+      plugins: { legend: { display: false } }
+    }
+  });
+</script>
+
+</body>
+</html>

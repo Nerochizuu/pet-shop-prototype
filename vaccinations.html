@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaccinations – PawShop Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
+</head>
+<body>
+<div class="dash">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawShop Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item active"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>Vaccination Records</h1>
+      <div class="topbar-right">
+        <span class="topbar-date">Friday, May 15, 2026</span>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-circle-check" aria-hidden="true"></i> Up to date</div>
+        <div class="metric-value">178</div>
+        <div class="metric-sub">Pets fully vaccinated</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-clock" aria-hidden="true"></i> Due soon</div>
+        <div class="metric-value">21</div>
+        <div class="metric-sub">Within 30 days</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Overdue</div>
+        <div class="metric-value">14</div>
+        <div class="metric-sub">Past due date</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-paw" aria-hidden="true"></i> Total pets tracked</div>
+        <div class="metric-value">213</div>
+        <div class="metric-sub">All registered pets</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><i class="ti ti-syringe" aria-hidden="true"></i>Vaccination records</span>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Search pet or owner...</div>
+          <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Filter</div>
+          <button class="add-btn"><i class="ti ti-plus" aria-hidden="true"></i> Add record</button>
+        </div>
+      </div>
+
+      <div class="tab-row">
+        <div class="tab active">All (213)</div>
+        <div class="tab">Overdue (14)</div>
+        <div class="tab">Due soon (21)</div>
+        <div class="tab">Up to date (178)</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Pet</th>
+              <th>Owner</th>
+              <th>Breed</th>
+              <th>Vaccine</th>
+              <th>Last given</th>
+              <th>Next due</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="td-name">Mochi</div><div class="td-sub">Pomeranian · 2 yrs</div></td>
+              <td><div>Claire Tan</div><div class="td-sub">claire@email.com</div></td>
+              <td>Pomeranian</td>
+              <td>Rabies</td>
+              <td>May 10, 2025</td>
+              <td style="color:#E24B4A;">May 10, 2026</td>
+              <td><span class="badge badge-red">Overdue</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Buddy</div><div class="td-sub">Shih Tzu · 3 yrs</div></td>
+              <td><div>Maria Santos</div><div class="td-sub">maria@email.com</div></td>
+              <td>Shih Tzu</td>
+              <td>Distemper</td>
+              <td>Jun 1, 2025</td>
+              <td style="color:#EF9F27;">Jun 1, 2026</td>
+              <td><span class="badge badge-amber">Due soon</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Luna</div><div class="td-sub">Poodle · 4 yrs</div></td>
+              <td><div>Jose Reyes</div><div class="td-sub">jose@email.com</div></td>
+              <td>Poodle</td>
+              <td>Bordetella</td>
+              <td>Nov 20, 2025</td>
+              <td>Nov 20, 2026</td>
+              <td><span class="badge badge-green">Up to date</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Max</div><div class="td-sub">Golden Retriever · 1 yr</div></td>
+              <td><div>Ryan Lim</div><div class="td-sub">ryan@email.com</div></td>
+              <td>Golden Retriever</td>
+              <td>Rabies</td>
+              <td>Jan 5, 2026</td>
+              <td>Jan 5, 2027</td>
+              <td><span class="badge badge-green">Up to date</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Coco</div><div class="td-sub">Maltese · 5 yrs</div></td>
+              <td><div>Lea Garcia</div><div class="td-sub">lea@email.com</div></td>
+              <td>Maltese</td>
+              <td>DHPP</td>
+              <td>Mar 15, 2025</td>
+              <td style="color:#E24B4A;">Mar 15, 2026</td>
+              <td><span class="badge badge-red">Overdue</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Kobe</div><div class="td-sub">Labrador · 2 yrs</div></td>
+              <td><div>Paolo Cruz</div><div class="td-sub">paolo@email.com</div></td>
+              <td>Labrador</td>
+              <td>Leptospirosis</td>
+              <td>Feb 10, 2026</td>
+              <td>Feb 10, 2027</td>
+              <td><span class="badge badge-green">Up to date</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span>Showing 6 of 213 records</span>
+        <div class="page-btns">
+          <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

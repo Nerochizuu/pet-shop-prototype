@@ -1,48 +1,164 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PET SHOP PROTOTYPE</title>
-       <link rel = "stylesheet" href = "style.css">
-    </head>
-    
-    <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PawPriority — Everything Your Pet Needs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
 
-        <div class = "navbar">
-            <div class = "navbar-inner">
-            <div class = "nav-links">
-                <a href = "home.html">Home</a>
-                <a href = "aboutus.html">About us</a>
-                <a href = "packages.html">Packages</a>
-            </div>
-            <input type = "text" class="search-box" placeholder="Search..">
-        </div>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo">🐾</div>
+      <span class="nav-name">PawPriority</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="packages.html">Packages</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search…"/>
+      </div>
+      <a href="admin login.html" class="btn-admin-login">
+        🛡️ Admin Login
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="paw-scatter">🐾</div>
+    <div class="paw-scatter">🐾</div>
+    <div class="paw-scatter">🐾</div>
+    <div class="paw-scatter">🐾</div>
+    <div class="paw-scatter">🐾</div>
+    <div class="paw-scatter">🐾</div>
+    <div class="paw-scatter">🐾</div>
+
+    <div class="hero-badge"><span></span> Trusted by 500+ happy pet owners</div>
+    <h1 class="hero-title">Everything your pet needs,<br/><em>all in one place.</em></h1>
+    <p class="hero-sub">Professional grooming, wellness checks, and boarding — delivered with love and expertise.</p>
+
+    <div class="hero-ctas">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#about" class="btn-outline">Book Now</a>
     </div>
 
-    
-
-        <div class = "hero">
-            <h1>EVERYTHING YOUR PET NEEDS, <br> ALL IN ONE PLACE</h1>
-
-            <div class = "buttons">
-                <button>Explore Us</button>
-                <button onclick="openModal()">Book Now</button>
-                
-            </div>
-        </div>
-
-    <div class = "hero-img">
-        <img src = "images/dog and cat.png" alt = "pets">
+    <div class="hero-img-wrap">
+      <img
+        class="hero-img"
+        src="images/dog and cat.png"
+        alt="Happy pets — a corgi and a cat on grass"
+        onerror="this.style.background='#d4a882';this.removeAttribute('src')"
+      />
     </div>
+  </section>
 
-    <div class = "about">
-        <h2>ABOUT US</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>     
-    </body>
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <p class="section-label">What we offer</p>
+    <h2 class="section-title">Services tailored<br/>for your furry family</h2>
+    <p class="section-sub">From a quick trim to a full spa day, our experienced groomers treat every pet like royalty.</p>
 
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon">✂️</div>
+        <div class="svc-title">Full Grooming</div>
+        <p class="svc-desc">Bath, blow-dry, haircut, nail trim, ear cleaning, and a spritz of pet-safe cologne. Your pup leaves looking and smelling amazing.</p>
+        <span class="svc-tag">From ₱600</span>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🛁</div>
+        <div class="svc-title">Basic Grooming</div>
+        <p class="svc-desc">Bath, blow-dry, and nail trim — perfect for regular upkeep between full grooming sessions.</p>
+        <span class="svc-tag">From ₱350</span>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">💉</div>
+        <div class="svc-title">Vaccinations</div>
+        <p class="svc-desc">Keep your pet protected with our on-site vaccination service. We track records and remind you when boosters are due.</p>
+        <span class="svc-tag">Schedule Now</span>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">❤️</div>
+        <div class="svc-title">Wellness Check</div>
+        <p class="svc-desc">A thorough head-to-tail physical check by our trained staff to catch any health concerns early.</p>
+        <span class="svc-tag">Included in packages</span>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🦷</div>
+        <div class="svc-title">Dental Care</div>
+        <p class="svc-desc">Tooth brushing and oral hygiene add-ons to keep your pet's teeth clean and their breath fresh.</p>
+        <span class="svc-tag">From ₱200 add-on</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <p class="section-label">About PawPriority</p>
+        <h2 class="section-title">We treat every pet<br/>like family</h2>
+        <p class="section-sub">Founded by passionate animal lovers, PawPriority was built on one simple belief: every pet deserves expert, compassionate care. Our team brings years of experience and genuine love for animals to every appointment.</p>
+      </div>
+      <div class="about-features">
+        <div class="about-feat">
+          <div class="af-icon">🏅</div>
+          <div>
+            <div class="af-title">Certified Groomers</div>
+            <div class="af-desc">All our groomers are professionally certified and undergo regular training to stay up-to-date with the best techniques.</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="af-icon">🧴</div>
+          <div>
+            <div class="af-title">Pet-Safe Products Only</div>
+            <div class="af-desc">We use hypoallergenic, vet-approved grooming products that are gentle on your pet's skin and coat.</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="af-icon">📱</div>
+          <div>
+            <div class="af-title">Easy Online Booking</div>
+            <div class="af-desc">Book, reschedule, or cancel appointments anytime through our hassle-free online system.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <h2>Ready to book your pet's next visit?</h2>
+    <p>Join hundreds of happy pet owners who trust PawPriority.</p>
+    <a href="#" class="btn-primary" onclick="openModal()">Book an Appointment</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">🐾 PawPriority</div>
+      <div>© 2026 PawPriority. All rights reserved.</div>
+      <div>Made with ❤️ for pets</div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+</body>
 <div id="appointmentModal" class="modal">
     <div class="modal-content">
   
@@ -61,7 +177,7 @@
                     <input type="text">
                 </div>
             </div>
-
+            
             <div class ="form-row">
                 <div>
                     <label>Email</label>
@@ -73,7 +189,7 @@
                     <input type="number">
                 </div>
             </div>
-        
+
             <div class="form-row">
                 <div>
                     <label>Date</label>
@@ -101,9 +217,7 @@
         function closeModal() {
             document.getElementById("appointmentModal").style.display = "none";
         }
-        </script>
-
-        <script>
+    
             window.onclick = function(event) {
                 let modal = document.getElementById("appointmentModal");
                 if (event.target === modal) {
@@ -113,4 +227,4 @@
             </script>
     </div>
   </div>
-    </html>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics – PawShop Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
+</head>
+<body>
+<div class="dash">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawShop Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item active"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>Analytics &amp; Reports</h1>
+      <div class="topbar-right">
+        <span class="topbar-date">Friday, May 15, 2026</span>
+        <div class="filter-btn"><i class="ti ti-calendar" aria-hidden="true"></i> May 2026</div>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-trending-up" aria-hidden="true"></i> Revenue growth</div>
+        <div class="metric-value">+8%</div>
+        <div class="metric-sub">vs last month</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-calendar-stats" aria-hidden="true"></i> Avg. daily bookings</div>
+        <div class="metric-value">9.4</div>
+        <div class="metric-sub">This month</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-users" aria-hidden="true"></i> New customers</div>
+        <div class="metric-value">14</div>
+        <div class="metric-sub">This month</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-star" aria-hidden="true"></i> Top service</div>
+        <div class="metric-value" style="font-size:15px;">Full Grooming</div>
+        <div class="metric-sub">48% of revenue</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-chart-line" aria-hidden="true"></i>Monthly sales trend</span>
+          <div class="filter-btn" style="font-size:11px;"><i class="ti ti-calendar" aria-hidden="true"></i> 2026</div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="salesTrendChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-chart-bar" aria-hidden="true"></i>Appointments by service</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="serviceChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-users" aria-hidden="true"></i>Customer activity</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="customerChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title"><i class="ti ti-box" aria-hidden="true"></i>Inventory consumption</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="inventoryChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const brown = '#b8896a', light = '#e6d2be', mid = '#d4b896';
+const gridColor = 'rgba(180,140,110,0.1)';
+const tickStyle = { font:{size:11}, color:'#9a7a65' };
+
+new Chart(document.getElementById('salesTrendChart'), {
+  type: 'line',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    datasets: [{ label:'Sales', data:[38000,42000,35000,50000,60400,null,null,null,null,null,null,null],
+      borderColor: brown, backgroundColor:'rgba(184,137,106,0.1)', tension:0.4, fill:true, pointBackgroundColor:brown }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:{...tickStyle, callback:v=>'₱'+(v/1000).toFixed(0)+'k'}} } }
+});
+
+new Chart(document.getElementById('serviceChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Full Grooming','Basic Grooming','Boarding','Wellness'],
+    datasets: [{ data:[48,32,14,6], backgroundColor:[brown,light,mid,'#c8a87a'], borderRadius:6 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:{...tickStyle,callback:v=>v+'%'}} } }
+});
+
+new Chart(document.getElementById('customerChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May'],
+    datasets: [
+      { label:'New', data:[8,11,9,13,14], backgroundColor:brown, borderRadius:4 },
+      { label:'Returning', data:[62,70,68,75,89], backgroundColor:light, borderRadius:4 }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'top',labels:{font:{size:11},color:'#9a7a65'}}},
+    scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:tickStyle} } }
+});
+
+new Chart(document.getElementById('inventoryChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Shampoo','Conditioner','Ear Cleaner','Towels','Spray','Clippers'],
+    datasets: [{ label:'Used this month', data:[28,21,14,30,18,7], backgroundColor:brown, borderRadius:6 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:tickStyle} } }
+});
+</script>
+</body>
+</html>

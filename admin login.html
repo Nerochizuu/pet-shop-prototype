@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PawPriority — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-deep:   #7a4f3a;
+      --brown-mid:    #b07d5b;
+      --brown-light:  #d4a882;
+      --cream-bg:     #f5ede4;
+      --cream-card:   #fdf7f2;
+      --text-dark:    #3b2314;
+      --text-muted:   #9e7b62;
+      --accent:       #c47a45;
+      --border:       #e8d5c4;
+      --danger:       #c0392b;
+      --success:      #6aab6a;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream-bg);
+      overflow: hidden;
+    }
+
+    /* ── Left decorative panel ── */
+    .panel-left {
+      width: 48%;
+      background: var(--brown-deep);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 60px 50px;
+    }
+
+    /* Layered paw-print pattern background */
+    .panel-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(196,122,69,.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(176,125,91,.22) 0%, transparent 50%);
+    }
+
+    /* Decorative circles */
+    .deco-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.08);
+    }
+    .deco-circle:nth-child(1) { width: 420px; height: 420px; top: -120px; left: -120px; }
+    .deco-circle:nth-child(2) { width: 300px; height: 300px; bottom: -80px; right: -80px; }
+    .deco-circle:nth-child(3) { width: 180px; height: 180px; top: 50%; left: 60%; transform: translate(-50%,-50%); border-color: rgba(255,255,255,.05); }
+
+    .panel-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      animation: fadeSlideUp .8s ease both;
+    }
+
+    /* Big paw icon */
+    .paw-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 28px;
+      background: rgba(255,255,255,.1);
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.15);
+      box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    }
+
+    .panel-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -.3px;
+    }
+
+    .panel-sub {
+      font-size: .95rem;
+      color: rgba(255,255,255,.6);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 280px;
+      margin: 0 auto 40px;
+    }
+
+    /* Stat pills */
+    .stat-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 40px;
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(6px);
+      animation: fadeSlideUp .8s ease both;
+    }
+    .stat-pill:nth-child(1) { animation-delay: .1s; }
+    .stat-pill:nth-child(2) { animation-delay: .2s; }
+    .stat-pill:nth-child(3) { animation-delay: .3s; }
+    .stat-pill strong {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .5px;
+    }
+    .stat-pill span {
+      font-size: .72rem;
+      color: rgba(255,255,255,.5);
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    /* Floating pet cards */
+    .float-card {
+      position: absolute;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 12px 16px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: float 4s ease-in-out infinite;
+    }
+    .float-card:nth-child(5) { top: 14%; left: 6%; animation-delay: 0s; }
+    .float-card:nth-child(6) { bottom: 16%; right: 4%; animation-delay: 1.5s; }
+    .float-card .fc-emoji { font-size: 22px; }
+    .float-card .fc-text { display: flex; flex-direction: column; }
+    .float-card .fc-name { font-size: .8rem; font-weight: 500; color: #fff; }
+    .float-card .fc-detail { font-size: .7rem; color: rgba(255,255,255,.5); }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* ── Right login panel ── */
+    .panel-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 50px;
+      background: var(--cream-card);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      animation: fadeSlideUp .7s ease .15s both;
+    }
+
+    .login-header {
+      margin-bottom: 36px;
+    }
+
+    .login-header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .brand-dot {
+      width: 34px;
+      height: 34px;
+      background: var(--brown-deep);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .login-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .login-sub {
+      font-size: .88rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 7px;
+      letter-spacing: .3px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+    .input-wrap .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      color: var(--brown-light);
+      pointer-events: none;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px 12px 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .92rem;
+      color: var(--text-dark);
+      background: #fff;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--brown-mid);
+      box-shadow: 0 0 0 3px rgba(176,125,91,.15);
+    }
+    input::placeholder { color: #c8b0a0; }
+
+    /* Show/hide password toggle */
+    .toggle-pw {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--text-muted);
+      user-select: none;
+      transition: color .2s;
+    }
+    .toggle-pw:hover { color: var(--brown-deep); }
+
+    /* Remember + forgot */
+    .form-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+    .remember input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--brown-deep);
+      cursor: pointer;
+      padding: 0;
+      border: none;
+      background: none;
+      box-shadow: none;
+    }
+    .forgot {
+      font-size: .82rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .forgot:hover { color: var(--brown-deep); text-decoration: underline; }
+
+    /* Login button */
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: var(--brown-deep);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: .4px;
+      transition: background .2s, transform .1s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(122,79,58,.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-login::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .btn-login:hover {
+      background: #6a3f2b;
+      box-shadow: 0 6px 20px rgba(122,79,58,.38);
+    }
+    .btn-login:active { transform: scale(.985); }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0;
+      color: var(--border);
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+
+
+    /* Error message */
+    .error-msg {
+      display: none;
+      background: rgba(192,57,43,.08);
+      border: 1px solid rgba(192,57,43,.25);
+      color: var(--danger);
+      font-size: .8rem;
+      border-radius: 8px;
+      padding: 9px 13px;
+      margin-bottom: 14px;
+    }
+    .error-msg.show { display: block; }
+
+    /* Footer note */
+    .login-footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+    .login-footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .login-footer a:hover { text-decoration: underline; }
+
+    /* Animations */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .panel-left { display: none; }
+      .panel-right { padding: 40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left decorative panel -->
+  <div class="panel-left">
+    <div class="deco-circle"></div>
+    <div class="deco-circle"></div>
+    <div class="deco-circle"></div>
+
+   
+
+    <div class="panel-content">
+      <div class="paw-icon">🐾</div>
+      <h1 class="panel-tagline">Every pet deserves<br/>the best care.</h1>
+      <p class="panel-sub">Manage appointments, staff, and inventory — all from one place.</p>
+
+      <div class="stat-row">
+        <div class="stat-pill">
+          <strong>12</strong>
+          <span>Today's Appts</span>
+        </div>
+        <div class="stat-pill">
+          <strong>₱42.1K</strong>
+          <span>Monthly Profit</span>
+        </div>
+        <div class="stat-pill">
+          <strong>4</strong>
+          <span>Staff Online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right login panel -->
+  <div class="panel-right">
+    <div class="login-box">
+
+      <div class="login-header">
+        <div class="brand">
+          <div class="brand-dot">🐾</div>
+          <span class="brand-name">PawPriority</span>
+        </div>
+        <h2 class="login-title">Welcome back, Admin</h2>
+        <p class="login-sub">Sign in to access your dashboard</p>
+      </div>
+
+      <!-- Error -->
+      <div class="error-msg" id="errorMsg">
+        ⚠️ Incorrect email or password. Please try again.
+      </div>
+
+      <!-- Form -->
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <div class="input-wrap">
+          <span class="input-icon">✉️</span>
+          <input type="email" id="email" placeholder="admin@pawpriority.com" autocomplete="email"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="password" placeholder="Enter your password"/>
+          <span class="toggle-pw" onclick="togglePw()" id="toggleIcon">👁️</span>
+        </div>
+      </div>
+
+      <div class="form-meta">
+        <label class="remember">
+          <input type="checkbox" id="remember"/> Remember me
+        </label>
+        <a href="#" class="forgot">Forgot password?</a>
+      </div>
+
+      <button class="btn-login" onclick="handleLogin()">Sign in to Dashboard</button>
+
+      <div class="divider">or</div>
+
+      <div class="login-footer">
+        Having trouble logging in? <a href="#">Contact support</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let pwVisible = false;
+    function togglePw() {
+      pwVisible = !pwVisible;
+      const input = document.getElementById('password');
+      const icon  = document.getElementById('toggleIcon');
+      input.type = pwVisible ? 'text' : 'password';
+      icon.textContent = pwVisible ? '🙈' : '👁️';
+    }
+
+    function handleLogin() {
+      const email = document.getElementById('email').value.trim();
+      const pass  = document.getElementById('password').value;
+      const err   = document.getElementById('errorMsg');
+
+      if (!email || !pass) {
+        err.textContent = '⚠️ Please fill in both fields.';
+        err.classList.add('show');
+        return;
+      }
+
+      // Demo credentials
+      if (email === 'admin@pawpriority.com' && pass === 'admin123') {
+        err.classList.remove('show');
+        const btn = document.querySelector('.btn-login');
+        btn.textContent = '✓ Redirecting to Dashboard…';
+        btn.style.background = '#6aab6a';
+      } else {
+        err.textContent = '⚠️ Incorrect email or password. Please try again.';
+        err.classList.add('show');
+      }
+    }
+
+    // Allow Enter key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleLogin();
+    });
+  </script>
+</body>
+</html>

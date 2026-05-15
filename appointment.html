@@ -1,61 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel = "stylesheet" href="appointment.css">
-  <title>Appointment Form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointments – PawPriority Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
 </head>
 <body>
-    <div class = "container">
+<div class="dash">
 
-        <div class = "navbar">
-            <div class = "navbar-inner">
-            <div class = "nav-links">
-                <a href = "home.html">Home</a>
-                <a href = "aboutus.html">About us</a>
-                <a href = "packages.html">Packages</a>
-            </div>
-            <input type = "text" class="search-box" placeholder="Search..">
-        </div>
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointments.html" class="nav-item active"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>Appointments</h1>
+      <div class="topbar-right">
+        <span class="topbar-date">Friday, May 15, 2026</span>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
     </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-calendar-event" aria-hidden="true"></i> Total today</div>
+        <div class="metric-value">12</div>
+        <div class="metric-sub">All bookings</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-clock" aria-hidden="true"></i> Pending</div>
+        <div class="metric-value">4</div>
+        <div class="metric-sub">Awaiting confirmation</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-check" aria-hidden="true"></i> Completed</div>
+        <div class="metric-value">5</div>
+        <div class="metric-sub">Done for today</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-x" aria-hidden="true"></i> Cancelled</div>
+        <div class="metric-value">1</div>
+        <div class="metric-sub">This week</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><i class="ti ti-list" aria-hidden="true"></i>All appointments</span>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Search...</div>
+          <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Filter</div>
+          <div class="filter-btn"><i class="ti ti-calendar" aria-hidden="true"></i> May 15, 2026</div>
+          <button class="add-btn" onclick="openModal()"><i class="ti ti-plus" aria-hidden="true"></i> New appointment</button>
+        </div>
+      </div>
+
+      <div class="tab-row">
+        <div class="tab active">All (12)</div>
+        <div class="tab">Pending (4)</div>
+        <div class="tab">In progress (3)</div>
+        <div class="tab">Completed (5)</div>
+        <div class="tab">Cancelled (1)</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Pet</th>
+              <th>Service</th>
+              <th>Groomer</th>
+              <th>Date &amp; Time</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="td-name">Maria Santos</div><div class="td-sub">maria@email.com</div></td>
+              <td><div class="td-name">Buddy</div><div class="td-sub">Shih Tzu</div></td>
+              <td>Full Grooming</td><td>Anna Cruz</td>
+              <td><div>May 15, 2026</div><div class="td-sub">9:00 AM</div></td>
+              <td><span class="badge badge-blue">Online</span></td>
+              <td><span class="badge badge-green">Completed</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Jose Reyes</div><div class="td-sub">jose@email.com</div></td>
+              <td><div class="td-name">Luna</div><div class="td-sub">Poodle</div></td>
+              <td>Basic Grooming</td><td>Ben Flores</td>
+              <td><div>May 15, 2026</div><div class="td-sub">10:30 AM</div></td>
+              <td><span class="badge badge-blue">Online</span></td>
+              <td><span class="badge badge-blue">In progress</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Claire Tan</div><div class="td-sub">claire@email.com</div></td>
+              <td><div class="td-name">Mochi</div><div class="td-sub">Pomeranian</div></td>
+              <td>Full Grooming</td><td>Anna Cruz</td>
+              <td><div>May 15, 2026</div><div class="td-sub">1:00 PM</div></td>
+              <td><span class="badge badge-gray">Walk-in</span></td>
+              <td><span class="badge badge-amber">Pending</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Ryan Lim</div><div class="td-sub">ryan@email.com</div></td>
+              <td><div class="td-name">Max</div><div class="td-sub">Golden Retriever</div></td>
+              <td>Boarding</td><td>Ben Flores</td>
+              <td><div>May 15, 2026</div><div class="td-sub">3:00 PM</div></td>
+              <td><span class="badge badge-blue">Online</span></td>
+              <td><span class="badge badge-amber">Pending</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Lea Garcia</div><div class="td-sub">lea@email.com</div></td>
+              <td><div class="td-name">Coco</div><div class="td-sub">Maltese</div></td>
+              <td>Wellness Check</td><td>Anna Cruz</td>
+              <td><div>May 15, 2026</div><div class="td-sub">4:30 PM</div></td>
+              <td><span class="badge badge-gray">Walk-in</span></td>
+              <td><span class="badge badge-gray">Scheduled</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Paolo Cruz</div><div class="td-sub">paolo@email.com</div></td>
+              <td><div class="td-name">Kobe</div><div class="td-sub">Labrador</div></td>
+              <td>Basic Grooming</td><td>Carla Lopez</td>
+              <td><div>May 15, 2026</div><div class="td-sub">11:00 AM</div></td>
+              <td><span class="badge badge-blue">Online</span></td>
+              <td><span class="badge badge-red">Cancelled</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span>Showing 6 of 12 appointments</span>
+        <div class="page-btns">
+          <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
 
-<div class = "form-container">
-    <form class = "appointment-form">
-  <h2>Appointment Form</h2>
-
-    <label>First Name:</label>
-    <input type="text" name="firstName" required><br><br>
-
-    <label>Middle Name:</label>
-    <input type="text" name="middleName"><br><br>
-
-    <label>Last Name:</label>
-    <input type="text" name="lastName" required><br><br>
-
-    <label>Date of Birth:</label>
-    <input type="date" name="dob" required><br><br>
-
-    <label>Age:</label>
-    <input type="number" name="age" min="0" required><br><br>
-
-    <label>Gender:</label>
-    <select name="gender" required>
-      <option value="">Select</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select><br><br>
-
-    <label>Contact Number:</label>
-    <input type="text" name="contact" required><br><br>
-
-
-    <label>Address:</label>
-    <input type="text" name="address"><br><br>
-
-    <button type="submit">Save</button>
-</form>
+<!-- Schedule Appointment Modal -->
+<div class="modal-overlay" id="apptModal">
+  <div class="modal-content">
+    <h2>Schedule Appointment</h2>
+    <form class="appointment-form" onsubmit="return false;">
+      <div class="form-row">
+        <div><label>First Name</label><input type="text" placeholder="e.g. Maria" /></div>
+        <div><label>Last Name</label><input type="text" placeholder="e.g. Santos" /></div>
+      </div>
+      <div class="form-row">
+        <div><label>Email</label><input type="email" placeholder="email@example.com" /></div>
+        <div><label>Contact Number</label><input type="tel" placeholder="+63 9XX XXX XXXX" /></div>
+      </div>
+      <div class="form-row">
+        <div><label>Pet Name</label><input type="text" placeholder="e.g. Buddy" /></div>
+        <div><label>Breed</label><input type="text" placeholder="e.g. Shih Tzu" /></div>
+      </div>
+      <div class="form-row">
+        <div><label>Service</label>
+          <select>
+            <option>Basic Grooming</option>
+            <option>Full Grooming</option>
+            <option>Wellness Check</option>
+            <option>Boarding</option>
+          </select>
+        </div>
+        <div><label>Groomer</label>
+          <select>
+            <option>Anna Cruz</option>
+            <option>Ben Flores</option>
+            <option>Carla Lopez</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div><label>Date</label><input type="date" /></div>
+        <div><label>Time</label><input type="time" /></div>
+      </div>
+      <div class="modal-buttons">
+        <button type="button" onclick="closeModal()">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
 </div>
-  
+
+<script>
+  function openModal()  { document.getElementById('apptModal').classList.add('open'); }
+  function closeModal() { document.getElementById('apptModal').classList.remove('open'); }
+  document.getElementById('apptModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
 </body>
 </html>

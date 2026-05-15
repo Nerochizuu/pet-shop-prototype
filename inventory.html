@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory – PawPriority Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
+</head>
+<body>
+<div class="dash">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointments.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="inventory.html" class="nav-item active"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>Inventory</h1>
+      <div class="topbar-right">
+        <span class="topbar-date">Friday, May 15, 2026</span>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-box" aria-hidden="true"></i> Total items</div>
+        <div class="metric-value">42</div>
+        <div class="metric-sub">Across all categories</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Low stock</div>
+        <div class="metric-value">3</div>
+        <div class="metric-sub">Need restocking</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-circle-x" aria-hidden="true"></i> Out of stock</div>
+        <div class="metric-value">1</div>
+        <div class="metric-sub">Unavailable items</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-cash" aria-hidden="true"></i> Stock value</div>
+        <div class="metric-value">&#8369;38,500</div>
+        <div class="metric-sub">Total inventory worth</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><i class="ti ti-box" aria-hidden="true"></i>All inventory items</span>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Search items...</div>
+          <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Category</div>
+          <button class="add-btn"><i class="ti ti-plus" aria-hidden="true"></i> Add item</button>
+        </div>
+      </div>
+
+      <div class="tab-row">
+        <div class="tab active">All (42)</div>
+        <div class="tab">Low stock (3)</div>
+        <div class="tab">Out of stock (1)</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item name</th>
+              <th>Category</th>
+              <th>Stock</th>
+              <th>Unit</th>
+              <th>Reorder level</th>
+              <th>Unit cost</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-name">Dog Shampoo</td>
+              <td>Grooming</td>
+              <td>2</td>
+              <td>Bottle</td>
+              <td>10</td>
+              <td>&#8369;280</td>
+              <td><span class="badge badge-red">Critical</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td class="td-name">Nail Clippers</td>
+              <td>Tools</td>
+              <td>5</td>
+              <td>Piece</td>
+              <td>8</td>
+              <td>&#8369;450</td>
+              <td><span class="badge badge-amber">Low</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td class="td-name">Conditioner</td>
+              <td>Grooming</td>
+              <td>7</td>
+              <td>Bottle</td>
+              <td>10</td>
+              <td>&#8369;320</td>
+              <td><span class="badge badge-amber">Low</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td class="td-name">Flea Treatment</td>
+              <td>Health</td>
+              <td>0</td>
+              <td>Pack</td>
+              <td>5</td>
+              <td>&#8369;620</td>
+              <td><span class="badge badge-red">Out of stock</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td class="td-name">Ear Cleaner</td>
+              <td>Health</td>
+              <td>18</td>
+              <td>Bottle</td>
+              <td>8</td>
+              <td>&#8369;190</td>
+              <td><span class="badge badge-green">Good</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td class="td-name">Towels</td>
+              <td>Supplies</td>
+              <td>24</td>
+              <td>Piece</td>
+              <td>10</td>
+              <td>&#8369;150</td>
+              <td><span class="badge badge-green">Good</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+            <tr>
+              <td class="td-name">Grooming Spray</td>
+              <td>Grooming</td>
+              <td>30</td>
+              <td>Bottle</td>
+              <td>10</td>
+              <td>&#8369;210</td>
+              <td><span class="badge badge-green">Good</span></td>
+              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span>Showing 7 of 42 items</span>
+        <div class="page-btns">
+          <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

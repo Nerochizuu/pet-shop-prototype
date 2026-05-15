@@ -1,204 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Packages</title>
-  <link rel="stylesheet" href="packages.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PawPriority — Packages</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="packages.css"/>
 </head>
 <body>
- 
-    <div class = "navbar">
-    <div class = "navbar-inner">    
-    <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="aboutus.html">About us</a>
-      <a href="packages.html" class="active">Packages</a>
-    </div>
-    <input type = "text" class="search-box" placeholder="Search..">
 
-</div>
-</div>
-  
- 
-  <div class="content">
-    <div class="page-header">
-      <h1>Our packages</h1>
-      <p>Choose the perfect care plan for your furry friend</p>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="home.html" class="nav-brand">
+      <div class="nav-logo">🐾</div>
+      <span class="nav-name">PawPriority</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="packages.html" class="active">Packages</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search…"/>
+      </div>
+      <a href="admin login.html" class="btn-admin-login">🛡️ Admin Login</a>
     </div>
- 
-    <div class="packages-grid">
- 
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="paw-bg">🐾</div>
+    <div class="paw-bg">🐾</div>
+    <div class="page-hero-inner">
+      <div class="hero-eyebrow"><span></span> Transparent Pricing</div>
+      <h1>Care plans for every<br/><em>furry friend</em></h1>
+      <p>Simple, honest pricing — no hidden fees. Choose the package that fits your pet's needs and book in minutes.</p>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterCards('all', this)">All Services</button>
+        <button class="filter-tab" onclick="filterCards('grooming', this)">Grooming</button>
+        <button class="filter-tab" onclick="filterCards('health', this)">Health</button>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- PACKAGES -->
+  <section class="packages-section">
+
+    <div class="packages-grid" id="packagesGrid">
+
       <!-- Basic Grooming -->
-      <div class="pkg-card">
-        <div class="pkg-header">
-          <div class="pkg-icon teal">🛁</div>
-          <div>
-            <div class="pkg-name">Basic Grooming</div>
-            <span class="pkg-tag tag-teal">Most popular</span>
-          </div>
+      <div class="pkg-card" data-category="grooming">
+        <div class="pkg-icon">🛁</div>
+        <div class="pkg-type">Grooming</div>
+        <div class="pkg-name">Basic Grooming</div>
+        <p class="pkg-desc">A refreshing clean-up session to keep your pet looking and smelling their best.</p>
+        <div class="pkg-duration">⏱ ~1.5 hours</div>
+        <ul class="pkg-features">
+          <li><span class="check">✓</span> Bath &amp; blow dry</li>
+          <li><span class="check">✓</span> Nail trimming</li>
+          <li><span class="check">✓</span> Ear cleaning</li>
+          <li><span class="check">✓</span> Bandana or ribbon</li>
+        </ul>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₱450</span>
+          <span class="pkg-period">/ session</span>
         </div>
-        <div class="pkg-body">
-          <p class="pkg-desc">A refreshing clean-up session to keep your pet looking and smelling great.</p>
-          <div class="pkg-features">
-            <div class="feat-row"><i class="ti ti-check"></i> Bath &amp; blow dry</div>
-            <div class="feat-row"><i class="ti ti-check"></i> Nail trimming</div>
-            <div class="feat-row"><i class="ti ti-check"></i> Ear cleaning</div>
-            <div class="feat-row"><i class="ti ti-clock"></i> ~1.5 hours</div>
-          </div>
-        </div>
-        <div class="pkg-footer">
-          <div class="pkg-price">&#8369;450 <span>/ session</span></div>
-          <button class="book-btn" onclick="openModal()">Book now</button>
-        </div>
+        <button class="pkg-btn" onclick="openModal()">Book Now</button>
       </div>
- 
-      <!-- Full Grooming -->
-      <div class="pkg-card">
-        <div class="pkg-header">
-          <div class="pkg-icon amber">✂️</div>
-          <div>
-            <div class="pkg-name">Full Grooming</div>
-            <span class="pkg-tag tag-amber">Premium</span>
-          </div>
+
+      <!-- Full Grooming — Featured -->
+      <div class="pkg-card featured" data-category="grooming">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-icon">✂️</div>
+        <div class="pkg-type">Grooming</div>
+        <div class="pkg-name">Full Grooming</div>
+        <p class="pkg-desc">Complete grooming with a breed-appropriate haircut and styling by our expert groomers.</p>
+        <div class="pkg-duration">⏱ ~3 hours</div>
+        <ul class="pkg-features">
+          <li><span class="check">✓</span> Everything in Basic</li>
+          <li><span class="check">✓</span> Haircut &amp; styling</li>
+          <li><span class="check">✓</span> Teeth brushing</li>
+          <li><span class="check">✓</span> Cologne &amp; finish</li>
+          <li><span class="check">✓</span> Wellness observation</li>
+        </ul>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₱850</span>
+          <span class="pkg-period">/ session</span>
         </div>
-        <div class="pkg-body">
-          <p class="pkg-desc">Complete grooming with a breed-appropriate haircut and styling by our expert groomers.</p>
-          <div class="pkg-features">
-            <div class="feat-row"><i class="ti ti-check"></i> Everything in basic</div>
-            <div class="feat-row"><i class="ti ti-check"></i> Haircut &amp; styling</div>
-            <div class="feat-row"><i class="ti ti-check"></i> Teeth brushing</div>
-            <div class="feat-row"><i class="ti ti-clock"></i> ~3 hours</div>
-          </div>
-        </div>
-        <div class="pkg-footer">
-          <div class="pkg-price">&#8369;850 <span>/ session</span></div>
-          <button class="book-btn" onclick="openModal()">Book now</button>
-        </div>
+        <button class="pkg-btn" onclick="openModal()">Book Now</button>
       </div>
- 
+
       <!-- Wellness Check -->
-      <div class="pkg-card">
-        <div class="pkg-header">
-          <div class="pkg-icon pink">🏥</div>
-          <div>
-            <div class="pkg-name">Wellness Check</div>
-            <span class="pkg-tag tag-pink">Health</span>
-          </div>
+      <div class="pkg-card" data-category="health">
+        <div class="pkg-icon">❤️</div>
+        <div class="pkg-type">Health</div>
+        <div class="pkg-name">Wellness Check</div>
+        <p class="pkg-desc">A routine health assessment to catch issues early and keep your pet in top condition.</p>
+        <div class="pkg-duration">⏱ ~45 minutes</div>
+        <ul class="pkg-features">
+          <li><span class="check">✓</span> Physical exam</li>
+          <li><span class="check">✓</span> Weight &amp; vitals check</li>
+          <li><span class="check">✓</span> Vet consultation</li>
+          <li><span class="check">✓</span> Health record update</li>
+        </ul>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₱600</span>
+          <span class="pkg-period">/ visit</span>
         </div>
-        <div class="pkg-body">
-          <p class="pkg-desc">A routine health assessment to catch issues early and keep your pet in top condition.</p>
-          <div class="pkg-features">
-            <div class="feat-row"><i class="ti ti-check"></i> Physical exam</div>
-            <div class="feat-row"><i class="ti ti-check"></i> Weight &amp; vitals check</div>
-            <div class="feat-row"><i class="ti ti-check"></i> Vet consultation</div>
-            <div class="feat-row"><i class="ti ti-clock"></i> ~45 minutes</div>
-          </div>
-        </div>
-        <div class="pkg-footer">
-          <div class="pkg-price">&#8369;600 <span>/ visit</span></div>
-          <button class="book-btn" onclick="openModal()">Book now</button>
-        </div>
+        <button class="pkg-btn" onclick="openModal()">Book Now</button>
       </div>
- 
-      <!-- Boarding -->
-      <div class="pkg-card">
-        <div class="pkg-header">
-          <div class="pkg-icon blue">🏠</div>
-          <div>
-            <div class="pkg-name">Boarding</div>
-            <span class="pkg-tag tag-blue">Overnight</span>
-          </div>
-        </div>
-        <div class="pkg-body">
-          <p class="pkg-desc">Safe, comfortable overnight stays with supervised playtime and feeding schedules.</p>
-          <div class="pkg-features">
-            <div class="feat-row"><i class="ti ti-check"></i> Private sleeping area</div>
-            <div class="feat-row"><i class="ti ti-check"></i> 3&times; daily feeding</div>
-            <div class="feat-row"><i class="ti ti-check"></i> Playtime &amp; exercise</div>
-            <div class="feat-row"><i class="ti ti-clock"></i> Per night</div>
-          </div>
-        </div>
-        <div class="pkg-footer">
-          <div class="pkg-price">&#8369;700 <span>/ night</span></div>
-          <button class="book-btn" onclick="openModal()">Book now</button>
-        </div>
-      </div>
- 
-    </div>
-  </div>
- 
-</body>
 
-<div id="appointmentModal" class="modal">
-    <div class="modal-content">
-  
-        <form class="appointment-form">
-
-            <h2>Schedule Appointment</h2>
-        
-            <div class="form-row">
-                <div>
-                    <label>First Name</label>
-                    <input type="text">
-                </div>
-        
-                <div>
-                    <label>Last Name</label>
-                    <input type="text">
-                </div>
-            </div>
-
-            <div class ="form-row">
-                <div>
-                    <label>Email</label>
-                    <input type="text">
-                </div>
-
-                <div>
-                    <label>Contact Number</label>
-                    <input type="number">
-                </div>
-            </div>
-        
-            <div class="form-row">
-                <div>
-                    <label>Date</label>
-                    <input type="date">
-                </div>
-        
-                <div>
-                    <label>Time</label>
-                    <input type="time">
-                </div>
-            </div>
-        
-            <div class="modal-buttons">
-                <button type="button" onclick="closeModal()">Cancel</button>
-                <button type="submit">Save</button>
-            </div>
-        
-        </form>
       
-      <script>
-        function openModal() {
-            document.getElementById("appointmentModal").style.display = "flex";
-        }
-        
-        function closeModal() {
-            document.getElementById("appointmentModal").style.display = "none";
-        }
-        </script>
 
-        <script>
-            window.onclick = function(event) {
-                let modal = document.getElementById("appointmentModal");
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            }
-            </script>
+    </div>
+
+
+    <!-- BUILD YOUR OWN PACKAGE BANNER -->
+    <div class="custom-banner">
+      <div class="custom-banner-left">
+        <div class="custom-banner-icon">🎨</div>
+        <div>
+          <div class="custom-banner-title">Can't find the right fit?</div>
+          <div class="custom-banner-sub">Mix and match services to build a custom package tailored exactly to your pet's needs — and see the total price update in real time.</div>
+        </div>
+      </div>
+      <button class="custom-banner-btn" onclick="openCustom()">Build Your Own Package →</button>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="compare-section">
+      <div class="compare-header">
+        <div>
+          <h3>Compare packages</h3>
+          <p>See what's included in each service at a glance.</p>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Basic Grooming</th>
+            <th class="highlight-col">Full Grooming</th>
+            <th>Wellness Check</th>
+            <th>Boarding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bath &amp; Blow Dry</td>
+            <td><span class="tick">✓</span></td>
+            <td class="highlight-col"><span class="tick">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Nail Trimming</td>
+            <td><span class="tick">✓</span></td>
+            <td class="highlight-col"><span class="tick">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Haircut &amp; Styling</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight-col"><span class="tick">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Teeth Brushing</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight-col"><span class="tick">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Health Assessment</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight-col"><span class="cross">—</span></td>
+            <td><span class="tick">✓</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Daily Feeding</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight-col"><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="tick">✓</span></td>
+          </tr>
+          <tr>
+            <td>Photo Updates</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight-col"><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="tick">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="faq-title">Frequently asked questions</div>
+      <p class="faq-sub">Everything you need to know before booking.</p>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How do I book an appointment?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a">Simply click "Book Now" on any package card, fill in your pet's details, and choose your preferred date and time. You'll receive a confirmation right away.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Can I combine packages in one visit?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a">Yes! For example, you can pair a Full Grooming session with a Wellness Check on the same day. Just mention it when booking and we'll schedule them together.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What should I bring for a boarding stay?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a">Bring your pet's regular food, any medications, a familiar toy or blanket for comfort, and their vaccination records. We'll take care of the rest.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Is there a cancellation policy?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a">We ask for at least 24 hours' notice for cancellations or rescheduling. Late cancellations may incur a small fee. Contact us as soon as possible and we'll do our best to accommodate you.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <h2>Ready to pamper your pet?</h2>
+    <p>Book a session today — your furry friend will thank you.</p>
+    <button class="btn-primary" onclick="openModal()">Book an Appointment</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">🐾 PawPriority</div>
+      <div>© 2026 PawPriority. All rights reserved.</div>
+      <div>Made with ❤️ for pets</div>
+    </div>
+  </footer>
+
+  
+
+  <script>
+    // Navbar scroll shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Filter tabs
+    function filterCards(category, btn) {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.pkg-card').forEach(card => {
+        const show = category === 'all' || card.dataset.category === category;
+        card.style.display = show ? 'flex' : 'none';
+      });
+    }
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Booking modal
+    function openBooking(service, price) {
+      const modal = document.getElementById('bookingModal');
+      const select = document.getElementById('modalService');
+      if (service) {
+        const options = Array.from(select.options);
+        const match = options.find(o => o.text.startsWith(service));
+        if (match) select.value = match.value;
+      }
+      modal.style.display = 'flex';
+    }
+    function closeBooking() {
+      document.getElementById('bookingModal').style.display = 'none';
+    }
+    document.getElementById('bookingModal').addEventListener('click', function(e) {
+      if (e.target === this) closeBooking();
+    });
+
+    // Custom package modal
+    function openCustom() {
+      document.getElementById('customModal').style.display = 'flex';
+    }
+    function closeCustom() {
+      document.getElementById('customModal').style.display = 'none';
+    }
+    document.getElementById('customModal').addEventListener('click', function(e) {
+      if (e.target === this) closeCustom();
+    });
+
+    function calcTotal() {
+      const checks = document.querySelectorAll('.addon-check');
+      let total = 0;
+      let count = 0;
+      checks.forEach(c => { if (c.checked) { total += parseInt(c.dataset.price); count++; } });
+      document.getElementById('customTotal').textContent = '₱' + total.toLocaleString();
+      const note = document.getElementById('customNote');
+      const btn  = document.getElementById('customConfirmBtn');
+      if (count === 0) {
+        note.textContent = 'Select at least one service to get started.';
+        btn.disabled = true;
+      } else {
+        note.textContent = count + ' service' + (count > 1 ? 's' : '') + ' selected.';
+        btn.disabled = false;
+      }
+    }
+
+    function confirmCustom() {
+      alert('Your custom package has been submitted! Our team will confirm your booking shortly.');
+      closeCustom();
+      document.querySelectorAll('.addon-check').forEach(c => c.checked = false);
+      calcTotal();
+    }
+  </script>
+
+  <!-- CUSTOM PACKAGE MODAL -->
+  <div class="modal" id="customModal">
+    <div class="modal-content custom-modal-content">
+      <div class="custom-modal-header">
+        <div>
+          <h2>Build Your Own Package</h2>
+          <p class="custom-modal-sub">Pick the services you want — your total updates instantly.</p>
+        </div>
+        <button class="custom-close" onclick="closeCustom()">✕</button>
+      </div>
+
+      <div class="custom-modal-body">
+        <!-- Add-on toggles -->
+        <div class="addon-section-label">Grooming Services</div>
+        <div class="addon-list">
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">🛁</span>
+              <div>
+                <div class="addon-name">Bath &amp; Blow Dry</div>
+                <div class="addon-desc">Full wash and dry with pet-safe shampoo</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱200</span>
+              <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">✂️</span>
+              <div>
+                <div class="addon-name">Haircut &amp; Styling</div>
+                <div class="addon-desc">Breed-appropriate cut by a certified groomer</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱300</span>
+              <input type="checkbox" class="addon-check" data-price="300" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">💅</span>
+              <div>
+                <div class="addon-name">Nail Trimming</div>
+                <div class="addon-desc">Safe and stress-free nail clipping</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱80</span>
+              <input type="checkbox" class="addon-check" data-price="80" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">👂</span>
+              <div>
+                <div class="addon-name">Ear Cleaning</div>
+                <div class="addon-desc">Gentle ear canal cleaning &amp; inspection</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱70</span>
+              <input type="checkbox" class="addon-check" data-price="70" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">🦷</span>
+              <div>
+                <div class="addon-name">Teeth Brushing</div>
+                <div class="addon-desc">Pet-safe toothpaste oral hygiene session</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱100</span>
+              <input type="checkbox" class="addon-check" data-price="100" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+        </div>
+
+        <div class="addon-section-label">Health &amp; Wellness</div>
+        <div class="addon-list">
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">❤️</span>
+              <div>
+                <div class="addon-name">Wellness Check</div>
+                <div class="addon-desc">Full physical exam and vitals assessment</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱600</span>
+              <input type="checkbox" class="addon-check" data-price="600" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">💊</span>
+              <div>
+                <div class="addon-name">Flea &amp; Tick Treatment</div>
+                <div class="addon-desc">Topical prevention treatment applied on-site</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱150</span>
+              <input type="checkbox" class="addon-check" data-price="150" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+        </div>
+
+        
+            <div class="addon-right">
+              <span class="addon-price">₱700</span>
+              <input type="checkbox" class="addon-check" data-price="700" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+          <label class="addon-item">
+            <div class="addon-info">
+              <span class="addon-icon">🎾</span>
+              <div>
+                <div class="addon-name">Extra Playtime Session</div>
+                <div class="addon-desc">30-min supervised outdoor play add-on</div>
+              </div>
+            </div>
+            <div class="addon-right">
+              <span class="addon-price">₱120</span>
+              <input type="checkbox" class="addon-check" data-price="120" onchange="calcTotal()"/>
+              <span class="addon-toggle-ui"></span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Sticky total footer -->
+      <div class="custom-modal-footer">
+        <div class="custom-total-wrap">
+          <div class="custom-total-label">Estimated Total</div>
+          <div class="custom-total-price" id="customTotal">₱0</div>
+          <div class="custom-total-note" id="customNote">Select at least one service to get started.</div>
+        </div>
+        <div class="custom-footer-btns">
+          <button class="custom-cancel-btn" onclick="closeCustom()">Cancel</button>
+          <button class="custom-confirm-btn" id="customConfirmBtn" onclick="confirmCustom()" disabled>Book Custom Package</button>
+        </div>
+      </div>
     </div>
   </div>
+</body>
+<div id="appointmentModal" class="modal">
+  <div class="modal-content">
+
+      <form class="appointment-form">
+
+          <h2>Schedule Appointment</h2>
+      
+          <div class="form-row">
+              <div>
+                  <label>First Name</label>
+                  <input type="text">
+              </div>
+      
+              <div>
+                  <label>Last Name</label>
+                  <input type="text">
+              </div>
+          </div>
+          
+          <div class ="form-row">
+              <div>
+                  <label>Email</label>
+                  <input type="text">
+              </div>
+
+              <div>
+                  <label>Contact Number</label>
+                  <input type="number">
+              </div>
+          </div>
+
+          <div class="form-row">
+              <div>
+                  <label>Date</label>
+                  <input type="date">
+              </div>
+      
+              <div>
+                  <label>Time</label>
+                  <input type="time">
+              </div>
+          </div>
+      
+          <div class="modal-buttons">
+              <button type="button" onclick="closeModal()">Cancel</button>
+              <button type="submit">Save</button>
+          </div>
+      
+      </form>
+    
+    <script>
+      function openModal() {
+          document.getElementById("appointmentModal").style.display = "flex";
+      }
+      
+      function closeModal() {
+          document.getElementById("appointmentModal").style.display = "none";
+      }
+  
+          window.onclick = function(event) {
+              let modal = document.getElementById("appointmentModal");
+              if (event.target === modal) {
+                  modal.style.display = "none";
+              }
+          }
+          </script>
+  </div>
+</div>
 </html>
- 
