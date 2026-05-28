@@ -6,7 +6,7 @@
 
 body {
     font-family: system-ui, sans-serif;
-    background: #f5e6d8;
+    background: #F5F5F5;
 }
 
 /* ── Layout ── */
@@ -18,7 +18,7 @@ body {
 
 /* ── Sidebar ── */
 .sidebar {
-    background: #b8896a;
+    background: #1B2A4A;
     padding: 1.5rem 0;
     display: flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ body {
 .topbar h1 {
     font-size: 16px;
     font-weight: 500;
-    color: #3d2a1a;
+    color: #1B2A4A;
 }
 
 .topbar-right {
@@ -101,13 +101,13 @@ body {
 
 .topbar-date {
     font-size: 12px;
-    color: #9a7a65;
+    color: #5A8A9A;
 }
 
 .notif-btn {
     position: relative;
     background: #fff;
-    border: 0.5px solid rgba(180, 140, 110, 0.3);
+    border: 0.5px solid rgba(59,191,206,0.3);
     border-radius: 8px;
     width: 34px;
     height: 34px;
@@ -115,7 +115,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #7a5a45;
+    color: #1F8FA0;
 }
 
 .notif-btn i {
@@ -137,7 +137,7 @@ body {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: #b8896a;
+    background: #1B2A4A;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,7 +156,7 @@ body {
 .metric-card {
     background: #fff;
     border-radius: 12px;
-    border: 0.5px solid rgba(180, 140, 110, 0.2);
+    border: 0.5px solid rgba(59,191,206,0.2);
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -165,7 +165,7 @@ body {
 
 .metric-label {
     font-size: 12px;
-    color: #9a7a65;
+    color: #5A8A9A;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -178,12 +178,12 @@ body {
 .metric-value {
     font-size: 22px;
     font-weight: 500;
-    color: #3d2a1a;
+    color: #1B2A4A;
 }
 
 .metric-sub {
     font-size: 11px;
-    color: #b8896a;
+    color: #1F8FA0;
 }
 
 /* ── Grid layouts ── */
@@ -209,7 +209,7 @@ body {
 .card {
     background: #fff;
     border-radius: 12px;
-    border: 0.5px solid rgba(180, 140, 110, 0.2);
+    border: 0.5px solid rgba(59,191,206,0.2);
     padding: 1rem 1.25rem;
 }
 
@@ -223,7 +223,7 @@ body {
 .card-title {
     font-size: 13px;
     font-weight: 500;
-    color: #3d2a1a;
+    color: #1B2A4A;
 }
 
 .card-title i {
@@ -232,7 +232,7 @@ body {
 
 .card-action {
     font-size: 11px;
-    color: #b8896a;
+    color: #1F8FA0;
     cursor: pointer;
 }
 
@@ -263,7 +263,7 @@ body {
     padding: 7px 0;
     border-bottom: 0.5px solid rgba(180, 140, 110, 0.12);
     font-size: 12px;
-    color: #5a3e2b;
+    color: #1F8FA0;
     gap: 8px;
 }
 
@@ -272,7 +272,7 @@ body {
 }
 
 .appt-row.header {
-    color: #9a7a65;
+    color: #1F8FA0;
     font-size: 11px;
     font-weight: 500;
     padding-bottom: 5px;
@@ -280,17 +280,17 @@ body {
 
 .appt-name {
     font-weight: 500;
-    color: #3d2a1a;
+    color: #1F8FA0;
 }
 
 .appt-pet {
     font-size: 11px;
-    color: #9a7a65;
+    color: #1F8FA0;
 }
 
 .appt-sub {
     font-size: 11px;
-    color: #9a7a65;
+    color: #1F8FA0;
 }
 
 /* ── Staff rows ── */
@@ -310,13 +310,13 @@ body {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: #e6d2be;
+    background: #1B2A4A;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
     font-weight: 500;
-    color: #7a5a45;
+    color: #fff;
     flex-shrink: 0;
 }
 

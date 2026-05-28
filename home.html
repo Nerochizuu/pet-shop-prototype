@@ -3,11 +3,35 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PawPriority — Everything Your Pet Needs</title>
+  <title>PawPriority — Customer Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
+  <!-- CART OVERLAY -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>🛒 Your Cart</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <span>🛍️</span>
+        <p>Your cart is empty.</p>
+      </div>
+      <div id="cartItems"></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal">₱0</span></div>
+      <div class="cart-total-row"><span>Delivery fee</span><span>₱80</span></div>
+      <div class="cart-total-row grand"><span>Total</span><span id="cartGrand">₱80</span></div>
+      <button class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
 
   <!-- NAVBAR -->
   <nav id="navbar">
@@ -17,19 +41,24 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
+      <li><a href="#" class="active">Home</a></li>
       <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#announcements">Announcements</a></li>
+      <li><a href="#shop">Shop</a></li>
       <li><a href="packages.html">Packages</a></li>
     </ul>
 
     <div class="nav-right">
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
-        <input type="text" placeholder="Search…"/>
+        <input type="text" placeholder="Search products…" id="searchInput" oninput="searchProducts()"/>
       </div>
-      <a href="admin login.html" class="btn-admin-login">
-        🛡️ Admin Login
-      </a>
+      <button class="cart-btn" onclick="openCart()">
+        🛒 Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="admin login.html" class="btn-admin-login">🛡️ Admin Login</a>
     </div>
   </nav>
 
@@ -43,104 +72,208 @@
     <div class="paw-scatter">🐾</div>
     <div class="paw-scatter">🐾</div>
 
-    <div class="hero-badge"><span></span> Trusted by 500+ happy pet owners</div>
+    <div class="hero-badge"><span></span> Welcome to our Customer Portal</div>
     <h1 class="hero-title">Everything your pet needs,<br/><em>all in one place.</em></h1>
-    <p class="hero-sub">Professional grooming, wellness checks, and boarding — delivered with love and expertise.</p>
+    <p class="hero-sub">Browse our services, check our announcements, and shop premium pet products — all from right here.</p>
 
     <div class="hero-ctas">
-      <a href="#services" class="btn-primary">Explore Services</a>
-      <a href="#about" class="btn-outline">Book Now</a>
+      <a href="#shop" class="btn-primary">Shop Products</a>
+      <a href="#announcements" class="btn-outline">View Announcements</a>
     </div>
 
     <div class="hero-img-wrap">
       <img
         class="hero-img"
         src="images/dog and cat.png"
-        alt="Happy pets — a corgi and a cat on grass"
+        alt="dog and cat"
         onerror="this.style.background='#d4a882';this.removeAttribute('src')"
       />
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <p class="section-label">What we offer</p>
-    <h2 class="section-title">Services tailored<br/>for your furry family</h2>
-    <p class="section-sub">From a quick trim to a full spa day, our experienced groomers treat every pet like royalty.</p>
+  <!-- SHOP DETAILS -->
+  <section class="section" id="about-shop">
+    <p class="section-label">Our Shop</p>
+    <h2 class="section-title">Get to know PawPriority</h2>
+    <p class="section-sub">Everything you need to know about us before your first visit.</p>
 
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="svc-icon">✂️</div>
-        <div class="svc-title">Full Grooming</div>
-        <p class="svc-desc">Bath, blow-dry, haircut, nail trim, ear cleaning, and a spritz of pet-safe cologne. Your pup leaves looking and smelling amazing.</p>
-        <span class="svc-tag">From ₱600</span>
+    <div class="details-grid">
+      <div class="detail-card">
+        <div class="detail-icon">🐾</div>
+        <h3>About Us</h3>
+        <p>PawPriority is a full-service pet grooming and wellness shop founded by passionate animal lovers. We believe every pet deserves expert, compassionate care — from their first bath to their senior wellness check. Our certified groomers and friendly staff are dedicated to making every visit a happy one.</p>
       </div>
-      <div class="service-card">
-        <div class="svc-icon">🛁</div>
-        <div class="svc-title">Basic Grooming</div>
-        <p class="svc-desc">Bath, blow-dry, and nail trim — perfect for regular upkeep between full grooming sessions.</p>
-        <span class="svc-tag">From ₱350</span>
+
+      <div class="detail-card">
+        <div class="detail-icon">📞</div>
+        <h3>Contact Information</h3>
+        <address>
+          <p>📱 <a href="tel:+639171234567">+63 917 123 4567</a></p><br/>
+          <p>📧 <a href="mailto:hello@pawpriority.ph">hello@pawpriority.ph</a></p><br/>
+          <p>💬 <a href="#">Message us on Facebook</a></p><br/>
+          <p>📸 <a href="#">@pawpriority.ph on Instagram</a></p>
+        </address>
       </div>
-      <div class="service-card">
-        <div class="svc-icon">💉</div>
-        <div class="svc-title">Vaccinations</div>
-        <p class="svc-desc">Keep your pet protected with our on-site vaccination service. We track records and remind you when boosters are due.</p>
-        <span class="svc-tag">Schedule Now</span>
+
+      <div class="detail-card">
+        <div class="detail-icon">📍</div>
+        <h3>Location</h3>
+        <address>
+          <p>Unit 2, Jomil Commercial Bldg. Molino-Paliparan Road, Molino IV, Bacoor Philippines, 4102</p>
+        </address>
+        <div class="map-placeholder">
+          <span>🗺️</span>
+          <p>Map placeholder</p>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="svc-icon">❤️</div>
-        <div class="svc-title">Wellness Check</div>
-        <p class="svc-desc">A thorough head-to-tail physical check by our trained staff to catch any health concerns early.</p>
-        <span class="svc-tag">Included in packages</span>
-      </div>
-      <div class="service-card">
-        <div class="svc-icon">🦷</div>
-        <div class="svc-title">Dental Care</div>
-        <p class="svc-desc">Tooth brushing and oral hygiene add-ons to keep your pet's teeth clean and their breath fresh.</p>
-        <span class="svc-tag">From ₱200 add-on</span>
+
+      <div class="detail-card">
+        <div class="detail-icon">✂️</div>
+        <h3>Our Services</h3>
+        <p>We offer full grooming, basic grooming, wellness checks, vaccinations, dental care, and overnight boarding. Every service is carried out with pet-safe products and lots of love. <a href="pawpriority-packages.html">View all packages →</a></p>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <div class="about-section" id="about">
-    <div class="about-inner">
-      <div class="about-text">
-        <p class="section-label">About PawPriority</p>
-        <h2 class="section-title">We treat every pet<br/>like family</h2>
-        <p class="section-sub">Founded by passionate animal lovers, PawPriority was built on one simple belief: every pet deserves expert, compassionate care. Our team brings years of experience and genuine love for animals to every appointment.</p>
+  <!-- OPERATING HOURS -->
+  <div class="hours-section" id="hours">
+    <div class="hours-inner">
+      <div class="hours-text">
+        <p class="section-label">Operating Hours</p>
+        <h2 class="section-title">When to visit us</h2>
+        <div class="status-badge open" id="statusBadge">
+          <span class="status-dot"></span>
+          <span id="statusText">We're open now!</span>
+        </div>
+        <p class="section-sub">Walk-ins are welcome during operating hours. For guaranteed slots, we recommend booking at least a day in advance through our packages page.</p>
       </div>
-      <div class="about-features">
-        <div class="about-feat">
-          <div class="af-icon">🏅</div>
-          <div>
-            <div class="af-title">Certified Groomers</div>
-            <div class="af-desc">All our groomers are professionally certified and undergo regular training to stay up-to-date with the best techniques.</div>
-          </div>
+
+      <div class="hours-table">
+        <div class="hours-row" id="row-mon">
+          <span class="hours-day">Monday</span>
+          <span class="hours-time">8:00 AM – 6:00 PM</span>
         </div>
-        <div class="about-feat">
-          <div class="af-icon">🧴</div>
-          <div>
-            <div class="af-title">Pet-Safe Products Only</div>
-            <div class="af-desc">We use hypoallergenic, vet-approved grooming products that are gentle on your pet's skin and coat.</div>
-          </div>
+        <div class="hours-row" id="row-tue">
+          <span class="hours-day">Tuesday</span>
+          <span class="hours-time">8:00 AM – 6:00 PM</span>
         </div>
-        <div class="about-feat">
-          <div class="af-icon">📱</div>
-          <div>
-            <div class="af-title">Easy Online Booking</div>
-            <div class="af-desc">Book, reschedule, or cancel appointments anytime through our hassle-free online system.</div>
-          </div>
+        <div class="hours-row" id="row-wed">
+          <span class="hours-day">Wednesday</span>
+          <span class="hours-time">8:00 AM – 6:00 PM</span>
+        </div>
+        <div class="hours-row" id="row-thu">
+          <span class="hours-day">Thursday</span>
+          <span class="hours-time">8:00 AM – 6:00 PM</span>
+        </div>
+        <div class="hours-row" id="row-fri">
+          <span class="hours-day">Friday</span>
+          <span class="hours-time">8:00 AM – 7:00 PM</span>
+        </div>
+        <div class="hours-row" id="row-sat">
+          <span class="hours-day">Saturday</span>
+          <span class="hours-time">8:00 AM – 6:00 PM</span>
+        </div>
+        <div class="hours-row" id="row-sun">
+          <span class="hours-day">Sunday</span>
+          <span class="hours-time">8:00 AM – 6:00 PM</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CTA STRIP -->
+  <!-- ANNOUNCEMENTS -->
+  <section class="section" id="announcements">
+    <p class="section-label">Announcements</p>
+    <h2 class="section-title">Latest from PawPriority</h2>
+    <p class="section-sub">Stay updated with our latest news, promos, and important notices from the admin team.</p>
+
+    <div class="announce-grid">
+
+      <div class="announce-card pinned">
+        <div class="announce-icon-wrap promo">🎉</div>
+        <div class="announce-body">
+          <div class="announce-meta">
+            <span class="announce-tag promo">Promo</span>
+            <span class="announce-pin">📌 Pinned</span>
+            <span class="announce-date">May 20, 2026</span>
+          </div>
+          <div class="announce-title">Summer Grooming Sale — 20% Off Full Grooming!</div>
+          <div class="announce-text">Celebrate the season with your furry friend! Get 20% off Full Grooming sessions every Tuesday and Wednesday throughout June. Book now to secure your slot — limited slots available per day.</div>
+        </div>
+      </div>
+
+      <div class="announce-card">
+        <div class="announce-icon-wrap info">📋</div>
+        <div class="announce-body">
+          <div class="announce-meta">
+            <span class="announce-tag info">Update</span>
+            <span class="announce-date">May 15, 2026</span>
+          </div>
+          <div class="announce-title">New Service: Flea & Tick Treatment Now Available</div>
+          <div class="announce-text">We've added flea and tick topical treatment as a standalone add-on service. It can be combined with any grooming package for just ₱150. Ask our staff during your next visit or add it when booking online.</div>
+        </div>
+      </div>
+
+      <div class="announce-card">
+        <div class="announce-icon-wrap alert">⚠️</div>
+        <div class="announce-body">
+          <div class="announce-meta">
+            <span class="announce-tag alert">Notice</span>
+            <span class="announce-date">May 10, 2026</span>
+          </div>
+          <div class="announce-title">Holiday Closure — May 29 (Araw ng Maynila)</div>
+          <div class="announce-text">Please note that PawPriority will be closed on May 29 in observance of the national holiday. Appointments on this date will be rescheduled. We apologize for any inconvenience and thank you for your understanding.</div>
+        </div>
+      </div>
+
+      <div class="announce-card">
+        <div class="announce-icon-wrap general">🛍️</div>
+        <div class="announce-body">
+          <div class="announce-meta">
+            <span class="announce-tag general">Shop</span>
+            <span class="announce-date">May 5, 2026</span>
+          </div>
+          <div class="announce-title">New Products In Stock — Organic Shampoos & Treats</div>
+          <div class="announce-text">We've restocked our bestselling organic coconut-based pet shampoos and added a new line of natural grain-free dog treats. Browse the shop section below to preorder or add to your cart.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHOP / PRODUCTS -->
+  <section class="section" id="shop">
+    <p class="section-label">Our Products</p>
+    <h2 class="section-title">Shop premium pet products</h2>
+    <p class="section-sub">Curated selection of grooming supplies, treats, and accessories — available for preorder or pick-up.</p>
+
+    <div class="shop-controls">
+      <div class="shop-filters">
+        <button class="shop-filter-btn active" onclick="filterProducts('all', this)">All</button>
+        <button class="shop-filter-btn" onclick="filterProducts('grooming', this)">Grooming</button>
+        <button class="shop-filter-btn" onclick="filterProducts('treats', this)">Treats</button>
+        <button class="shop-filter-btn" onclick="filterProducts('accessories', this)">Accessories</button>
+        <button class="shop-filter-btn" onclick="filterProducts('health', this)">Health</button>
+      </div>
+      <div class="shop-sort">
+        Sort by:
+        <select onchange="sortProducts(this.value)">
+          <option value="default">Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- CTA -->
   <div class="cta-strip">
-    <h2>Ready to book your pet's next visit?</h2>
-    <p>Join hundreds of happy pet owners who trust PawPriority.</p>
-    <a href="#" class="btn-primary" onclick="openModal()">Book an Appointment</a>
+    <h2>Ready to book a grooming session?</h2>
+    <p>Check out our packages and get your pet pampered today.</p>
+    <a href="packages.html" class="btn-primary">View Packages</a>
   </div>
 
   <!-- FOOTER -->
@@ -152,79 +285,211 @@
     </div>
   </footer>
 
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
   <script>
-    const navbar = document.getElementById('navbar');
+    /* ── DATA ── */
+    const PRODUCTS = [
+      { id:1, name:'Coconut Oat Shampoo', category:'grooming', emoji:'🧴', price:280, oldPrice:320, desc:'Gentle hypoallergenic shampoo for sensitive skin. Sulfate-free formula.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
+      { id:2, name:'Slicker Brush Pro', category:'grooming', emoji:'🖌️', price:195, oldPrice:null, desc:'Premium stainless steel pin brush for all coat types. Ergonomic grip.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
+      { id:3, name:'Detangling Spray', category:'grooming', emoji:'💧', price:150, oldPrice:null, desc:'Leave-in conditioning spray that removes knots and adds shine.', badge:null, badgeType:null, stock:'low', stockLabel:'Low Stock (3 left)' },
+      { id:4, name:'Nail Grinder', category:'grooming', emoji:'⚡', price:450, oldPrice:500, desc:'Quiet electric nail grinder — stress-free grooming at home.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
+      { id:5, name:'Grain-Free Dog Treats', category:'treats', emoji:'🦴', price:120, oldPrice:null, desc:'Natural chicken-flavored treats with no artificial preservatives.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
+      { id:6, name:'Dental Chew Sticks', category:'treats', emoji:'🦷', price:95, oldPrice:null, desc:'Helps reduce plaque and freshen breath. Vanilla-mint flavor.', badge:null, badgeType:null, stock:'in', stockLabel:'In Stock' },
+      { id:7, name:'Freeze-Dried Liver Bits', category:'treats', emoji:'❤️', price:180, oldPrice:200, desc:'High-protein training treats. Single ingredient — 100% beef liver.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
+      { id:8, name:'Cat Dental Treats', category:'treats', emoji:'😺', price:85, oldPrice:null, desc:'Crunchy chicken-flavored treats that clean teeth as cats chew.', badge:null, badgeType:null, stock:'out', stockLabel:'Out of Stock' },
+      { id:9, name:'Adjustable Harness', category:'accessories', emoji:'🎽', price:350, oldPrice:null, desc:'Soft padded no-pull harness. Available in S, M, L, XL.', badge:null, badgeType:null, stock:'in', stockLabel:'In Stock' },
+      { id:10, name:'Reflective Leash', category:'accessories', emoji:'🔗', price:220, oldPrice:250, desc:'1.5m reflective rope leash for safe nighttime walks.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
+      { id:11, name:'Cooling Pet Mat', category:'accessories', emoji:'🟦', price:480, oldPrice:null, desc:'Self-cooling gel mat — perfect for warm Philippine weather.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
+      { id:12, name:'Flea & Tick Drops', category:'health', emoji:'💊', price:260, oldPrice:300, desc:'Monthly topical treatment. Safe for dogs 8 weeks and older.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
+      { id:13, name:'Vitamin E Supplements', category:'health', emoji:'🌿', price:175, oldPrice:null, desc:'Daily chewable supplement for coat, joint, and immune health.', badge:null, badgeType:null, stock:'low', stockLabel:'Low Stock (5 left)' },
+      { id:14, name:'Pet First Aid Kit', category:'health', emoji:'🧰', price:395, oldPrice:null, desc:'Essential kit with bandages, antiseptic wipes, and guide booklet.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
+    ];
+
+    let cart = [];
+    let filteredProducts = [...PRODUCTS];
+    let activeCategory = 'all';
+
+    /* ── RENDER PRODUCTS ── */
+    function renderProducts(list) {
+      const grid = document.getElementById('productsGrid');
+      if (!list.length) {
+        grid.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem;grid-column:1/-1;padding:40px 0;">No products found.</p>';
+        return;
+      }
+      grid.innerHTML = list.map(p => `
+        <div class="product-card" data-category="${p.category}" data-id="${p.id}">
+          <div class="product-img">
+            ${p.badge ? `<span class="product-badge ${p.badgeType}">${p.badge}</span>` : ''}
+            ${p.emoji}
+          </div>
+          <div class="product-body">
+            <div class="product-category">${p.category}</div>
+            <div class="product-name">${p.name}</div>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-stock">
+              <span class="stock-dot ${p.stock}"></span>
+              ${p.stockLabel}
+            </div>
+            <div class="product-price-row">
+              <span class="product-price">₱${p.price.toLocaleString()}</span>
+              ${p.oldPrice ? `<span class="product-old-price">₱${p.oldPrice.toLocaleString()}</span>` : ''}
+            </div>
+            <div class="product-actions">
+              <button class="btn-preorder" onclick="preorder(${p.id})" ${p.stock==='out'?'disabled style="opacity:.4;cursor:not-allowed;"':''}>Preorder</button>
+              <button class="btn-cart" id="cart-btn-${p.id}" onclick="addToCart(${p.id})" ${p.stock==='out'?'disabled style="opacity:.4;cursor:not-allowed;"':''}>🛒</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ── FILTER ── */
+    function filterProducts(cat, btn) {
+      document.querySelectorAll('.shop-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = cat;
+      applyFilters();
+    }
+
+    function searchProducts() {
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      filteredProducts = PRODUCTS.filter(p => {
+        const matchCat  = activeCategory === 'all' || p.category === activeCategory;
+        const matchQ    = !q || p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+        return matchCat && matchQ;
+      });
+      renderProducts(filteredProducts);
+    }
+
+    function sortProducts(val) {
+      const list = [...filteredProducts];
+      if (val === 'low')  list.sort((a,b) => a.price - b.price);
+      if (val === 'high') list.sort((a,b) => b.price - a.price);
+      if (val === 'name') list.sort((a,b) => a.name.localeCompare(b.name));
+      renderProducts(list);
+    }
+
+    /* ── CART ── */
+    function addToCart(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product || product.stock === 'out') return;
+      const existing = cart.find(i => i.id === id);
+      if (existing) { existing.qty++; }
+      else { cart.push({ ...product, qty: 1 }); }
+      updateCartUI();
+      const btn = document.getElementById('cart-btn-' + id);
+      if (btn) { btn.textContent = '✓'; btn.classList.add('added'); setTimeout(() => { btn.textContent = '🛒'; btn.classList.remove('added'); }, 1200); }
+      showToast(`${product.name} added to cart!`);
+    }
+
+    function preorder(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      showToast(`Preorder placed for ${product.name}! We'll contact you soon.`);
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      updateCartUI();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) removeFromCart(id);
+      else updateCartUI();
+    }
+
+    function updateCartUI() {
+      const total = cart.reduce((s, i) => s + i.qty, 0);
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const countEl = document.getElementById('cartCount');
+      countEl.textContent = total;
+      total > 0 ? countEl.classList.add('show') : countEl.classList.remove('show');
+
+      document.getElementById('cartSubtotal').textContent = '₱' + subtotal.toLocaleString();
+      document.getElementById('cartGrand').textContent    = '₱' + (subtotal + 80).toLocaleString();
+      document.getElementById('cartEmpty').style.display  = cart.length ? 'none' : 'flex';
+      document.getElementById('cartFooter').style.display = cart.length ? 'block' : 'none';
+
+      document.getElementById('cartItems').innerHTML = cart.map(i => `
+        <div class="cart-item">
+          <div class="cart-item-img">${i.emoji}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${i.name}</div>
+            <div class="cart-item-type">${i.category}</div>
+            <div class="cart-item-controls">
+              <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+              <span class="qty-val">${i.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+              <button class="cart-item-remove" onclick="removeFromCart(${i.id})">🗑 Remove</button>
+            </div>
+          </div>
+          <span class="cart-item-price">₱${(i.price * i.qty).toLocaleString()}</span>
+        </div>
+      `).join('');
+    }
+
+    function openCart()  { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+    function closeCart() { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+    function checkout() {
+      showToast('Order placed! We\'ll confirm your pickup schedule shortly. 🐾');
+      cart = [];
+      updateCartUI();
+      closeCart();
+    }
+
+    /* ── TOAST ── */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    /* ── OPERATING HOURS STATUS ── */
+    function updateStatus() {
+      const now = new Date();
+      const day = now.getDay(); // 0=Sun,1=Mon,...,6=Sat
+      const hour = now.getHours();
+      const dayIds = ['sun','mon','tue','wed','thu','fri','sat'];
+      const todayId = 'row-' + dayIds[day];
+
+      // Highlight today's row
+      document.querySelectorAll('.hours-row').forEach(r => r.classList.remove('today'));
+      const todayRow = document.getElementById(todayId);
+      if (todayRow) {
+        const dot = document.createElement('span');
+        dot.className = 'hours-today-dot';
+        const daySpan = todayRow.querySelector('.hours-day');
+        if (!daySpan.querySelector('.hours-today-dot')) daySpan.prepend(dot);
+        todayRow.classList.add('today');
+      }
+
+      // Open/closed logic
+      const closedDays = [0]; // Sunday
+      const isOpen = !closedDays.includes(day) && hour >= 9 && hour < (day === 5 || day === 6 ? 19 : 18);
+      const badge = document.getElementById('statusBadge');
+      const text  = document.getElementById('statusText');
+      badge.className = 'status-badge ' + (isOpen ? 'open' : 'closed');
+      text.textContent = isOpen ? 'We\'re open now!' : 'We\'re currently closed.';
+    }
+
+    /* ── NAVBAR SCROLL ── */
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
+
+    /* ── INIT ── */
+    renderProducts(PRODUCTS);
+    updateStatus();
   </script>
 </body>
-<div id="appointmentModal" class="modal">
-    <div class="modal-content">
-  
-        <form class="appointment-form">
-
-            <h2>Schedule Appointment</h2>
-        
-            <div class="form-row">
-                <div>
-                    <label>First Name</label>
-                    <input type="text">
-                </div>
-        
-                <div>
-                    <label>Last Name</label>
-                    <input type="text">
-                </div>
-            </div>
-            
-            <div class ="form-row">
-                <div>
-                    <label>Email</label>
-                    <input type="text">
-                </div>
-
-                <div>
-                    <label>Contact Number</label>
-                    <input type="number">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div>
-                    <label>Date</label>
-                    <input type="date">
-                </div>
-        
-                <div>
-                    <label>Time</label>
-                    <input type="time">
-                </div>
-            </div>
-        
-            <div class="modal-buttons">
-                <button type="button" onclick="closeModal()">Cancel</button>
-                <button type="submit">Save</button>
-            </div>
-        
-        </form>
-      
-      <script>
-        function openModal() {
-            document.getElementById("appointmentModal").style.display = "flex";
-        }
-        
-        function closeModal() {
-            document.getElementById("appointmentModal").style.display = "none";
-        }
-    
-            window.onclick = function(event) {
-                let modal = document.getElementById("appointmentModal");
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            }
-            </script>
-    </div>
-  </div>
 </html>

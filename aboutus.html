@@ -117,6 +117,14 @@
                     <input type="time">
                 </div>
             </div>
+
+            <div class="upload-button">
+                <input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload(this)">
+                <button type="button" onclick="document.getElementById('fileInput').click()">
+                  📎 Upload Image
+                </button>
+                <span id="fileName" class="file-name"></span>
+              </div>
         
             <div class="modal-buttons">
                 <button type="button" onclick="closeModal()">Cancel</button>

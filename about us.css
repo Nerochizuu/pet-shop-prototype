@@ -1,17 +1,17 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --navbar-bg:   #BC9B7F;
-  --brown-deep:  #7a4f3a;
-  --brown-mid:   #b07d5b;
-  --brown-light: #d4a882;
-  --cream-bg:    #f0e0d0;
-  --cream-dark:  #e8d0bc;
-  --cream-card:  #fdf7f2;
-  --text-dark:   #3b2314;
-  --text-muted:  #9e7b62;
-  --accent:      #c47a45;
-  --border:      #dfc5ae;
+  --navbar-bg:   #1a2a4a;
+  --brown-deep:  #1a2a4a;
+  --brown-mid:   #2e4a7a;
+  --brown-light: #4fc3c8;
+  --cream-bg:    #a8e6e8;
+  --cream-dark:  #f0f8f9;
+  --cream-card:  #d6f0f2;
+  --text-dark:   #f7fdfe;
+  --text-muted:  #1a2a4a;
+  --accent:      #4a6a8a;
+  --border:      #b8e8eb;
   --white:       #ffffff;
 }
 html { scroll-behavior: smooth; }
@@ -244,7 +244,7 @@ nav {
 
 
 .modal-content {
-    background-color: #e6d2be;
+    background-color: #4a6a8a;
     padding: 30px;
     border-radius: 20px;
     width: 400px;
@@ -311,7 +311,7 @@ nav {
 
 
 .modal-buttons button:last-child {
-    background-color: #b5957b;
+    background-color: #a8e6e8;
     color: white;
 }
 
@@ -326,4 +326,23 @@ nav {
 
 .modal-buttons button:hover {
     opacity: 0.9;
+}
+
+.upload-button button {
+  background-color: #a8e6e8;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.upload-button button:hover {
+  background-color: #a07d63;
+}
+
+.upload-button button:active {
+  background-color: #8c6b53;
 }

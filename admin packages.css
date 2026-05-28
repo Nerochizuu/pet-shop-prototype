@@ -81,14 +81,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #9a7a65;
+    color: #1F8FA0 ;
     font-size: 13px;
     transition: background 0.15s, color 0.15s;
 }
 
 .icon-btn:hover {
     background: #f5e6d8;
-    color: #7a5a45;
+    color: #176F80;
 }
 
 .icon-btn.danger:hover {
@@ -171,7 +171,7 @@
 }
 
 .toggle.on {
-    background: #b8896a;
+    background: #3BBFCE ;
 }
 
 .toggle::after {

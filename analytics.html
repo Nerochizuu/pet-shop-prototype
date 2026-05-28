@@ -11,7 +11,7 @@
 <div class="dash">
 
   <aside class="sidebar">
-    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawShop Admin</div>
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
     <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
     <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
     <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
@@ -102,16 +102,19 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const brown = '#b8896a', light = '#e6d2be', mid = '#d4b896';
-const gridColor = 'rgba(180,140,110,0.1)';
-const tickStyle = { font:{size:11}, color:'#9a7a65' };
+const primary = '#1F8FA0';
+const secondary = '#3BBFCE';
+const tertiary = '#8ED8E2';
+const dark = '#1B2A4A';
+const gridColor = 'rgba(59,191,206,0.1)';
+const tickStyle = { font:{size:11}, color:'#5A8A9A' };
 
 new Chart(document.getElementById('salesTrendChart'), {
   type: 'line',
   data: {
     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     datasets: [{ label:'Sales', data:[38000,42000,35000,50000,60400,null,null,null,null,null,null,null],
-      borderColor: brown, backgroundColor:'rgba(184,137,106,0.1)', tension:0.4, fill:true, pointBackgroundColor:brown }]
+      borderColor: primary, backgroundColor:'rgba(31,143,160,0.1)', tension:0.4, fill:true, pointBackgroundColor:primary }]
   },
   options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
     scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:{...tickStyle, callback:v=>'₱'+(v/1000).toFixed(0)+'k'}} } }
@@ -120,8 +123,8 @@ new Chart(document.getElementById('salesTrendChart'), {
 new Chart(document.getElementById('serviceChart'), {
   type: 'bar',
   data: {
-    labels: ['Full Grooming','Basic Grooming','Boarding','Wellness'],
-    datasets: [{ data:[48,32,14,6], backgroundColor:[brown,light,mid,'#c8a87a'], borderRadius:6 }]
+    labels: ['Full Grooming','Basic Grooming','Wellness'],
+    datasets: [{ data:[48,32,14,6], backgroundColor:[dark, primary, secondary, tertiary], borderRadius:6 }]
   },
   options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
     scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:{...tickStyle,callback:v=>v+'%'}} } }
@@ -132,11 +135,11 @@ new Chart(document.getElementById('customerChart'), {
   data: {
     labels: ['Jan','Feb','Mar','Apr','May'],
     datasets: [
-      { label:'New', data:[8,11,9,13,14], backgroundColor:brown, borderRadius:4 },
-      { label:'Returning', data:[62,70,68,75,89], backgroundColor:light, borderRadius:4 }
+      { label:'New', data:[8,11,9,13,14], backgroundColor:primary, borderRadius:4 },
+      { label:'Returning', data:[62,70,68,75,89], backgroundColor:secondary, borderRadius:4 }
     ]
   },
-  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'top',labels:{font:{size:11},color:'#9a7a65'}}},
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'top',labels:{font:{size:11},color:'#5A8A9A'}}},
     scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:tickStyle} } }
 });
 
@@ -144,7 +147,7 @@ new Chart(document.getElementById('inventoryChart'), {
   type: 'bar',
   data: {
     labels: ['Shampoo','Conditioner','Ear Cleaner','Towels','Spray','Clippers'],
-    datasets: [{ label:'Used this month', data:[28,21,14,30,18,7], backgroundColor:brown, borderRadius:6 }]
+    datasets: [{ label:'Used this month', data:[28,21,14,30,18,7], backgroundColor:primary, borderRadius:6 }]
   },
   options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
     scales:{ x:{grid:{display:false},ticks:tickStyle}, y:{grid:{color:gridColor},ticks:tickStyle} } }

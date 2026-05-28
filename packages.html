@@ -148,7 +148,7 @@
             <th>Basic Grooming</th>
             <th class="highlight-col">Full Grooming</th>
             <th>Wellness Check</th>
-            <th>Boarding</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -227,13 +227,7 @@
           <div class="faq-a">Yes! For example, you can pair a Full Grooming session with a Wellness Check on the same day. Just mention it when booking and we'll schedule them together.</div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            What should I bring for a boarding stay?
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">Bring your pet's regular food, any medications, a familiar toy or blanket for comfort, and their vaccination records. We'll take care of the rest.</div>
-        </div>
+        
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
@@ -544,6 +538,14 @@
                   <label>Time</label>
                   <input type="time">
               </div>
+          </div>
+
+          <div class="upload-button">
+            <input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload(this)">
+            <button type="button" onclick="document.getElementById('fileInput').click()">
+              📎 Upload Image
+            </button>
+            <span id="fileName" class="file-name"></span>
           </div>
       
           <div class="modal-buttons">
