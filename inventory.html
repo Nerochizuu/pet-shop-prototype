@@ -27,7 +27,10 @@
     <div class="topbar">
       <h1>Inventory</h1>
       <div class="topbar-right">
-        <span class="topbar-date">Friday, May 15, 2026</span>
+        <span class="topbar-date" id="todayDate">Friday, May 15, 2026</span>
+        <div class="filter-btn" id="scanIndicator" style="display:flex;align-items:center;gap:6px;">
+          <i class="ti ti-barcode" aria-hidden="true"></i> Scanner ready
+        </div>
         <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
         <div class="avatar">AD</div>
       </div>
@@ -36,22 +39,22 @@
     <div class="metric-row">
       <div class="metric-card">
         <div class="metric-label"><i class="ti ti-box" aria-hidden="true"></i> Total items</div>
-        <div class="metric-value">42</div>
+        <div class="metric-value" id="metricTotalItems">—</div>
         <div class="metric-sub">Across all categories</div>
       </div>
       <div class="metric-card">
         <div class="metric-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Low stock</div>
-        <div class="metric-value">3</div>
+        <div class="metric-value" id="metricLowStock">—</div>
         <div class="metric-sub">Need restocking</div>
       </div>
       <div class="metric-card">
         <div class="metric-label"><i class="ti ti-circle-x" aria-hidden="true"></i> Out of stock</div>
-        <div class="metric-value">1</div>
+        <div class="metric-value" id="metricOutOfStock">—</div>
         <div class="metric-sub">Unavailable items</div>
       </div>
       <div class="metric-card">
         <div class="metric-label"><i class="ti ti-cash" aria-hidden="true"></i> Stock value</div>
-        <div class="metric-value">&#8369;38,500</div>
+        <div class="metric-value" id="metricStockValue">—</div>
         <div class="metric-sub">Total inventory worth</div>
       </div>
     </div>
@@ -60,16 +63,19 @@
       <div class="card-header">
         <span class="card-title"><i class="ti ti-box" aria-hidden="true"></i>All inventory items</span>
         <div class="toolbar">
-          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Search items...</div>
+          <div class="search-box">
+            <i class="ti ti-search" aria-hidden="true"></i>
+            <input type="text" id="invSearchInput" data-scanner-target="true" placeholder="Search items or scan barcode..." style="border:none;background:transparent;outline:none;font-family:inherit;font-size:inherit;color:inherit;width:180px;" />
+          </div>
           <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Category</div>
-          <button class="add-btn"><i class="ti ti-plus" aria-hidden="true"></i> Add item</button>
+          <button class="add-btn" onclick="openAddItemModal()"><i class="ti ti-plus" aria-hidden="true"></i> Add item</button>
         </div>
       </div>
 
-      <div class="tab-row">
-        <div class="tab active">All (42)</div>
-        <div class="tab">Low stock (3)</div>
-        <div class="tab">Out of stock (1)</div>
+      <div class="tab-row" id="inventoryTabs">
+        <div class="tab active" onclick="setInvFilter('all', this)">All</div>
+        <div class="tab" onclick="setInvFilter('low', this)">Low stock</div>
+        <div class="tab" onclick="setInvFilter('out_of_stock', this)">Out of stock</div>
       </div>
 
       <div class="table-wrap">
@@ -86,92 +92,111 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="inventoryTableBody">
             <tr>
-              <td class="td-name">Dog Shampoo</td>
-              <td>Grooming</td>
-              <td>2</td>
-              <td>Bottle</td>
-              <td>10</td>
-              <td>&#8369;280</td>
-              <td><span class="badge badge-red">Critical</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td class="td-name">Nail Clippers</td>
-              <td>Tools</td>
-              <td>5</td>
-              <td>Piece</td>
-              <td>8</td>
-              <td>&#8369;450</td>
-              <td><span class="badge badge-amber">Low</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td class="td-name">Conditioner</td>
-              <td>Grooming</td>
-              <td>7</td>
-              <td>Bottle</td>
-              <td>10</td>
-              <td>&#8369;320</td>
-              <td><span class="badge badge-amber">Low</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td class="td-name">Flea Treatment</td>
-              <td>Health</td>
-              <td>0</td>
-              <td>Pack</td>
-              <td>5</td>
-              <td>&#8369;620</td>
-              <td><span class="badge badge-red">Out of stock</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td class="td-name">Ear Cleaner</td>
-              <td>Health</td>
-              <td>18</td>
-              <td>Bottle</td>
-              <td>8</td>
-              <td>&#8369;190</td>
-              <td><span class="badge badge-green">Good</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td class="td-name">Towels</td>
-              <td>Supplies</td>
-              <td>24</td>
-              <td>Piece</td>
-              <td>10</td>
-              <td>&#8369;150</td>
-              <td><span class="badge badge-green">Good</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td class="td-name">Grooming Spray</td>
-              <td>Grooming</td>
-              <td>30</td>
-              <td>Bottle</td>
-              <td>10</td>
-              <td>&#8369;210</td>
-              <td><span class="badge badge-green">Good</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Restock"><i class="ti ti-plus" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></div></td>
+              <td colspan="8" style="text-align:center; padding: 24px; color: #5A8A9A;">
+                Loading inventory...
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="pagination">
-        <span>Showing 7 of 42 items</span>
+        <span id="invResultsCount">Loading...</span>
         <div class="page-btns">
           <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
           <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
           <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
   </main>
 </div>
+
+<!-- Add New Item Modal (manual entry, separate from scanner auto-prompt) -->
+<div class="modal-overlay" id="addItemModal">
+  <div class="modal-content">
+    <h2>Add Inventory Item</h2>
+    <form class="appointment-form" id="addItemForm" onsubmit="return false;">
+      <div class="form-row">
+        <div><label>Barcode</label><input type="text" name="barcode" placeholder="Scan or type barcode" required /></div>
+        <div><label>Item Name</label><input type="text" name="item_name" placeholder="e.g. Dog Shampoo" required /></div>
+      </div>
+      <div class="form-row">
+        <div><label>Unit</label>
+          <select name="unit">
+            <option>Bottle</option>
+            <option>Piece</option>
+            <option>Pack</option>
+            <option>Box</option>
+          </select>
+        </div>
+        <div><label>Unit Cost (&#8369;)</label><input type="number" name="unit_cost" placeholder="0.00" step="0.01" /></div>
+      </div>
+      <div class="form-row">
+        <div><label>Initial Stock</label><input type="number" name="current_stock" placeholder="0" /></div>
+        <div><label>Reorder Level</label><input type="number" name="reorder_level" placeholder="5" /></div>
+      </div>
+      <div class="modal-buttons">
+        <button type="button" onclick="closeAddItemModal()">Cancel</button>
+        <button type="submit" onclick="submitNewItem(event)">Save Item</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openAddItemModal()  { document.getElementById('addItemModal').classList.add('open'); }
+  function closeAddItemModal() { document.getElementById('addItemModal').classList.remove('open'); }
+  document.getElementById('addItemModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAddItemModal();
+  });
+
+  function submitNewItem(e) {
+    e.preventDefault();
+    const form = document.getElementById('addItemForm');
+    const formData = new FormData(form);
+
+    fetch('backend/inventory/add item.php', { method: 'POST', body: formData })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          showScanToast(data.message, 'success');
+          form.reset();
+          closeAddItemModal();
+          loadInventory(currentInvFilter);
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(err => alert('Network error: ' + err));
+  }
+
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  // Debounced search
+  let invSearchTimeout;
+  document.getElementById('invSearchInput').addEventListener('input', function () {
+    clearTimeout(invSearchTimeout);
+    invSearchTimeout = setTimeout(() => loadInventory(currentInvFilter), 300);
+  });
+</script>
+
+<!-- Loads live data + manual restock/deduct buttons -->
+<script src="backend/inventory/inventory table.js"></script>
+
+<!-- USB HID barcode scanner listener — calls handleScannedBarcode() on every scan -->
+<script src="backend/inventory/barcode scanner.js"></script>
+<script>
+  initBarcodeScanner({
+    onScan: function (barcode) {
+      handleScannedBarcode(barcode);
+    }
+  });
+</script>
+
 </body>
 </html>
