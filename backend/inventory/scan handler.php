@@ -18,7 +18,7 @@
  */
 
 header('Content-Type: application/json');
-require_once '../db_connect.php';
+require_once 'D:\xampp\htdocs\PET SHOP PROTOTYPE\db_connect.php';
 function respond(bool $success, string $message, array $extra = []): void {
     echo json_encode(array_merge(['success' => $success, 'message' => $message], $extra));
     exit;

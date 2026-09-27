@@ -12,7 +12,7 @@
  */
 
 header('Content-Type: application/json');
-require_once '../db_connect.php';
+require_once 'D:\xampp\htdocs\PET SHOP PROTOTYPE\db_connect.php';
 $conn = getDbConnection();
 
 $statusFilter = $_GET['status'] ?? 'all';

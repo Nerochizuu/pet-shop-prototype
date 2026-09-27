@@ -16,6 +16,7 @@
     <a href="appointments.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
     <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
     <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="orders.html" class="nav-item"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Orders</a>
     <a href="inventory.html" class="nav-item active"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
     <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
     <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
@@ -158,7 +159,7 @@
     const form = document.getElementById('addItemForm');
     const formData = new FormData(form);
 
-    fetch('backend/inventory/add item.php', { method: 'POST', body: formData })
+    fetch('backend/inventory/add_item.php', { method: 'POST', body: formData })
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -186,10 +187,10 @@
 </script>
 
 <!-- Loads live data + manual restock/deduct buttons -->
-<script src="backend/inventory/inventory table.js"></script>
+<script src="backend/inventory/inventory-table.js"></script>
 
 <!-- USB HID barcode scanner listener — calls handleScannedBarcode() on every scan -->
-<script src="backend/inventory/barcode scanner.js"></script>
+<script src="backend/inventory/barcode-scanner.js"></script>
 <script>
   initBarcodeScanner({
     onScan: function (barcode) {

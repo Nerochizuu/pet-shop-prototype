@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orders – PawPriority Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
+</head>
+<body>
+<div class="dash">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointments.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="orders.html" class="nav-item active"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Orders</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>Shop Orders</h1>
+      <div class="topbar-right">
+        <span class="topbar-date" id="todayDate"></span>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Total orders</div>
+        <div class="metric-value" id="metricTotalOrders">—</div>
+        <div class="metric-sub">All time</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-clock" aria-hidden="true"></i> Pending</div>
+        <div class="metric-value" id="metricPendingOrders">—</div>
+        <div class="metric-sub">Awaiting confirmation</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-circle-check" aria-hidden="true"></i> Completed</div>
+        <div class="metric-value" id="metricCompletedOrders">—</div>
+        <div class="metric-sub">Fulfilled orders</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-cash" aria-hidden="true"></i> Order revenue</div>
+        <div class="metric-value" id="metricOrderRevenue">—</div>
+        <div class="metric-sub">Excludes cancelled</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><i class="ti ti-shopping-cart" aria-hidden="true"></i>All shop orders</span>
+        <div class="toolbar">
+          <div class="search-box">
+            <i class="ti ti-search" aria-hidden="true"></i>
+            <input type="text" id="orderSearchInput" placeholder="Search by customer..."
+              style="border:none;background:transparent;outline:none;font-family:inherit;font-size:inherit;color:inherit;width:170px;" />
+          </div>
+          <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Filter</div>
+        </div>
+      </div>
+
+      <div class="tab-row" id="orderTabs">
+        <div class="tab active" id="tab-order-all" onclick="setOrderFilter('all', this)">All</div>
+        <div class="tab" id="tab-order-pending" onclick="setOrderFilter('pending', this)">Pending</div>
+        <div class="tab" id="tab-order-confirmed" onclick="setOrderFilter('confirmed', this)">Confirmed</div>
+        <div class="tab" id="tab-order-ready" onclick="setOrderFilter('ready', this)">Ready</div>
+        <div class="tab" id="tab-order-completed" onclick="setOrderFilter('completed', this)">Completed</div>
+        <div class="tab" id="tab-order-cancelled" onclick="setOrderFilter('cancelled', this)">Cancelled</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Date placed</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <tr>
+              <td colspan="7" style="text-align:center; padding:24px; color:#5A8A9A;">
+                Loading orders...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span id="orderResultsCount">Loading...</span>
+        <div class="page-btns">
+          <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  let orderSearchTimeout;
+  document.getElementById('orderSearchInput').addEventListener('input', function () {
+    clearTimeout(orderSearchTimeout);
+    orderSearchTimeout = setTimeout(() => loadOrders(currentOrderFilter), 300);
+  });
+</script>
+
+<script src="backend/login/session_guard.js"></script>
+<script src="backend/orders/orders-table.js"></script>
+
+</body>
+</html>

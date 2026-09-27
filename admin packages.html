@@ -5,23 +5,664 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Packages – PawShop Admin</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-  <link rel="stylesheet" href="shared ui.css" />
-  <link rel="stylesheet" href="admin packages.css" />
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: system-ui, sans-serif;
+    background: #F5F5F5;
+}
+
+/* ── Layout ── */
+.dash {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+    background: #1B2A4A;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar-logo {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    padding: 0 1.25rem 1.25rem;
+    border-bottom: 0.5px solid rgba(255,255,255,0.2);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-logo i { font-size: 20px; }
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 1.25rem;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.nav-item i { font-size: 16px; }
+.nav-item:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-item.active { background: rgba(255,255,255,0.15); color: #fff; font-weight: 500; }
+
+/* ── Main ── */
+.main {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+/* ── Topbar ── */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topbar h1 { font-size: 16px; font-weight: 500; color: #1B2A4A; }
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar-date { font-size: 12px; color: #5A8A9A; }
+
+.notif-btn {
+    position: relative;
+    background: #fff;
+    border: 0.5px solid rgba(59,191,206,0.3);
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #3A6A7A;
+}
+
+.notif-btn i { font-size: 16px; }
+
+.notif-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 7px;
+    height: 7px;
+    background: #E24B4A;
+    border-radius: 50%;
+    border: 1.5px solid #fff;
+}
+
+.avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #1B2A4A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+}
+
+/* ── Metric cards ── */
+.metric-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.metric-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 0.5px solid rgba(59,191,206,0.2);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metric-label { font-size: 12px; color: #5A8A9A; display: flex; align-items: center; gap: 6px; }
+.metric-label i { font-size: 14px; }
+.metric-value { font-size: 22px; font-weight: 500; color: #1B2A4A; }
+.metric-sub { font-size: 11px; color: #1F8FA0; }
+
+/* ── Cards ── */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    border: 0.5px solid rgba(59,191,206,0.2);
+    padding: 1rem 1.25rem;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card-title { font-size: 13px; font-weight: 500; color: #1B2A4A; }
+.card-title i { margin-right: 5px; }
+.card-action { font-size: 11px; color: #1F8FA0; cursor: pointer; }
+.card-action:hover { text-decoration: underline; }
+
+/* ── Badges ── */
+.badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.badge-green  { background: #EAF3DE; color: #3B6D11; }
+.badge-amber  { background: #FAEEDA; color: #854F0B; }
+.badge-blue   { background: #E6F1FB; color: #185FA5; }
+.badge-gray   { background: #F1EFE8; color: #5F5E5A; }
+.badge-red    { background: #FCEBEB; color: #A32D2D; }
+.badge-pink   { background: #FBEAF0; color: #993556; }
+
+/* ── Toolbar ── */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #F5F5F5;
+    border: 0.5px solid rgba(59,191,206,0.3);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #5A8A9A;
+}
+
+.filter-btn {
+    background: #F5F5F5;
+    border: 0.5px solid rgba(59,191,206,0.3);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #3A6A7A;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.add-btn {
+    background: #1B2A4A;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+}
+
+.add-btn:hover { background: #176F80; }
+
+/* ── Table ── */
+.table-wrap { overflow-x: auto; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+th {
+    text-align: left;
+    padding: 8px 10px;
+    color: #5A8A9A;
+    font-weight: 500;
+    font-size: 11px;
+    border-bottom: 0.5px solid rgba(59,191,206,0.2);
+    white-space: nowrap;
+}
+
+td {
+    padding: 10px;
+    color: #2C4A6E;
+    border-bottom: 0.5px solid rgba(59,191,206,0.1);
+    vertical-align: middle;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #EAF6F8; }
+
+.td-name { font-weight: 500; color: #1B2A4A; }
+.td-sub { font-size: 11px; color: #5A8A9A; }
+
+/* ── Action buttons ── */
+.action-btns { display: flex; gap: 6px; }
+
+.icon-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 0.5px solid rgba(59,191,206,0.3);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #5A8A9A;
+    font-size: 14px;
+}
+
+.icon-btn:hover { background: #F5F5F5; color: #3A6A7A; }
+
+/* ── Tabs ── */
+.tab-row {
+    display: flex;
+    gap: 4px;
+    border-bottom: 0.5px solid rgba(59,191,206,0.2);
+    margin-bottom: 1rem;
+}
+
+.tab {
+    padding: 7px 14px;
+    font-size: 12px;
+    color: #5A8A9A;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+}
+
+.tab.active {
+    color: #1F8FA0;
+    border-bottom: 2px solid #3BBFCE;
+    font-weight: 500;
+}
+
+/* ── Pagination ── */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 12px;
+    color: #5A8A9A;
+}
+
+.page-btns { display: flex; gap: 4px; }
+.page-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 0.5px solid rgba(59,191,206,0.3);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #5A8A9A;
+    font-size: 12px;
+}
+.page-btn.active { background: #1B2A4A; color: #fff; border-color: #3BBFCE; }
+
+/* ── Grids ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+
+/* ── Form rows ── */
+.form-section { display: flex; flex-direction: column; gap: 12px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-row div { display: flex; flex-direction: column; gap: 5px; }
+.form-full { display: flex; flex-direction: column; gap: 5px; }
+
+label { font-size: 13px; color: #2C4A6E; }
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="tel"],
+select,
+textarea {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 0.5px solid rgba(59,191,206,0.4);
+    background: #F5F5F5;
+    font-size: 13px;
+    font-family: inherit;
+    color: #1B2A4A;
+    width: 100%;
+    outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #3BBFCE;
+    box-shadow: 0 0 0 2px rgba(59,191,206,0.25);
+}
+
+/* ── Modal ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal-content {
+    background: #EAF6F8;
+    padding: 30px;
+    border-radius: 20px;
+    width: 460px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-content h2 {
+    text-align: center;
+    color: #1B2A4A;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.modal-buttons button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    transition: opacity 0.2s;
+}
+
+.modal-buttons button:first-child { background: #ddd; color: #333; }
+.modal-buttons button:last-child  { background: #1F8FA0; color: #fff; }
+.modal-buttons button:hover { opacity: 0.85; }
+
+/* ── Inventory bar ── */
+.inv-bar-wrap {
+    flex: 1;
+    margin: 0 10px;
+    height: 4px;
+    background: #D8EEF2;
+    border-radius: 4px;
+}
+.inv-bar { height: 4px; border-radius: 4px; }
+
+/* ── Chart wrap ── */
+.chart-wrap { position: relative; width: 100%; height: 220px; margin-top: 8px; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .dash { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .metric-row { grid-template-columns: repeat(2, 1fr); }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+}
+
+/* ── Package grid ── */
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+/* ── Package card ── */
+.pkg-card {
+    background: #fff;
+    border-radius: 14px;
+    border: 0.5px solid rgba(180, 140, 110, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.15s ease;
+}
+
+.pkg-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Card header */
+.pkg-card-header {
+    padding: 1rem 1rem 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.pkg-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.pkg-meta {
+    flex: 1;
+}
+
+.pkg-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1B2A4A;
+}
+
+.pkg-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-top: 3px;
+    font-weight: 500;
+}
+
+.tag-teal  { background: #E1F5EE; color: #0F6E56; }
+.tag-amber { background: #FAEEDA; color: #854F0B; }
+.tag-pink  { background: #FBEAF0; color: #993556; }
+.tag-blue  { background: #E6F1FB; color: #185FA5; }
+
+/* Edit / delete action buttons */
+.pkg-actions {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.icon-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    border: 0.5px solid rgba(59,191,206,0.3);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #5A8A9A;
+    font-size: 13px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.icon-btn:hover {
+    background: #F5F5F5;
+    color: #3A6A7A;
+}
+
+.icon-btn.danger:hover {
+    background: #FCEBEB;
+    color: #A32D2D;
+    border-color: #F09595;
+}
+
+/* Card body */
+.pkg-body {
+    padding: 0 1rem 0.75rem;
+    flex: 1;
+}
+
+.pkg-desc {
+    font-size: 12px;
+    color: #3A6A7A;
+    line-height: 1.6;
+}
+
+.pkg-features {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.feat-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: #2C4A6E;
+}
+
+.feat-row i {
+    font-size: 13px;
+    color: #1F8FA0;
+}
+
+/* Card footer */
+.pkg-footer {
+    padding: 0.75rem 1rem;
+    border-top: 0.5px solid rgba(180, 140, 110, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pkg-price {
+    font-size: 17px;
+    font-weight: 500;
+    color: #1B2A4A;
+}
+
+.pkg-price span {
+    font-size: 11px;
+    font-weight: 400;
+    color: #5A8A9A;
+}
+
+/* Active / inactive toggle */
+.status-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #5A8A9A;
+}
+
+.toggle {
+    width: 32px;
+    height: 18px;
+    background: #A8CDD4;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.toggle.on {
+    background: #1B2A4A;
+}
+
+.toggle::after {
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2.5px;
+    left: 2.5px;
+    transition: left 0.2s;
+}
+
+.toggle.on::after {
+    left: 16.5px;
+}
+
+/* Metric card overrides for longer text */
+.pkg-metric-name {
+    font-size: 15px;
+}
+
+  </style>
 </head>
 <body>
 <div class="dash">
 
   <aside class="sidebar">
-    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
-    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
-    <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawShop Admin</div>
+    <a href="admin-dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointments.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
     <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
-    <a href="admin packages.html" class="nav-item active"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="admin-packages.html" class="nav-item active"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="orders.html" class="nav-item"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Orders</a>
     <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
     <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
     <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
     <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
-    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+    <a href="user-accounts.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+    <a href="settings.html" class="nav-item"><i class="ti ti-settings" aria-hidden="true"></i> Settings</a>
   </aside>
 
   <main class="main">
@@ -179,7 +820,41 @@
           </div>
         </div>
 
-        
+        <!-- Boarding -->
+        <div class="pkg-card">
+          <div class="pkg-card-header">
+            <div class="pkg-icon" style="background:#E6F1FB;">&#x1F3E0;</div>
+            <div class="pkg-meta">
+              <div class="pkg-name">Boarding</div>
+              <span class="pkg-tag tag-blue">Overnight</span>
+            </div>
+            <div class="pkg-actions">
+              <button class="icon-btn" aria-label="Edit package" onclick="openModal('edit', 'Boarding')">
+                <i class="ti ti-edit" aria-hidden="true"></i>
+              </button>
+              <button class="icon-btn danger" aria-label="Delete package" onclick="confirmDelete('Boarding')">
+                <i class="ti ti-trash" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <p class="pkg-desc">Safe, comfortable overnight stays with supervised playtime and feeding schedules.</p>
+            <div class="pkg-features">
+              <div class="feat-row"><i class="ti ti-check" aria-hidden="true"></i> Private sleeping area</div>
+              <div class="feat-row"><i class="ti ti-check" aria-hidden="true"></i> 3&times; daily feeding</div>
+              <div class="feat-row"><i class="ti ti-check" aria-hidden="true"></i> Playtime &amp; exercise</div>
+              <div class="feat-row"><i class="ti ti-clock" aria-hidden="true"></i> Per night</div>
+            </div>
+          </div>
+          <div class="pkg-footer">
+            <div class="pkg-price">&#8369;700 <span>/ night</span></div>
+            <div class="status-toggle">
+              <span class="toggle-label">Active</span>
+              <div class="toggle on" onclick="toggleStatus(this)"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -205,7 +880,7 @@
         <textarea id="pkgDesc" rows="2" placeholder="Short description visible to customers..."></textarea>
       </div>
       <div class="form-full">
-        <label>Inclusions <span style="font-size:11px; color:#9a7a65;">(one per line)</span></label>
+        <label>Inclusions <span style="font-size:11px; color:#5A8A9A;">(one per line)</span></label>
         <textarea id="pkgInclusions" rows="4" placeholder="Bath &amp; blow dry&#10;Nail trimming&#10;Ear cleaning&#10;~1.5 hours"></textarea>
       </div>
       <div class="form-row">
@@ -235,7 +910,7 @@
 <div class="modal-overlay" id="deleteModal">
   <div class="modal-content" style="width:360px;">
     <h2>Delete package</h2>
-    <p style="font-size:13px; color:#7a5a45; text-align:center; margin-top:-8px;">
+    <p style="font-size:13px; color:#3A6A7A; text-align:center; margin-top:-8px;">
       Are you sure you want to delete <strong id="deleteName"></strong>?
       This action cannot be undone.
     </p>

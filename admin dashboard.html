@@ -21,6 +21,7 @@
     <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
     <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
     <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="orders.html" class="nav-item"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Orders</a>
     <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
     <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
     <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
@@ -163,6 +164,7 @@
             <span class="card-title"><i class="ti ti-bell" aria-hidden="true"></i>Notifications</span>
             <span class="card-action">Mark all read</span>
           </div>
+          <div id="notificationsPanel">
           <div class="notif-item">
             <div class="notif-icon" style="background:#FAEEDA; color:#854F0B;">
               <i class="ti ti-box" aria-hidden="true"></i>
@@ -194,7 +196,7 @@
 
       </div>
     </div>
-
+  </div>
     <!-- Inventory + Sales chart -->
     <div class="grid-2">
 
@@ -351,6 +353,6 @@
 
 <!-- Loads live inventory snapshot + low stock count into the cards above -->
 <script src="backend/inventory/dashboard inventory.js"></script>
-
+<script src="backend/vaccinations/dashboard-notifications.js"></script>
 </body>
 </html>

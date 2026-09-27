@@ -568,38 +568,43 @@
   ═══════════════════════════════════════════════ -->
   <div id="boardingModal" class="modal">
     <div class="modal-content">
-      <form class="appointment-form">
+      <form class="appointment-form" id="boardingForm">
         <h2>🏠 Reserve a Room</h2>
         <div class="selected-service-pill" id="boardingServicePill">Cozy Suite</div>
+        <!-- Hidden fields set by openBoardingModal() -->
+        <input type="hidden" name="room_type"      id="boardingRoomType"  value="Cozy Suite"/>
+        <input type="hidden" name="rate_per_night" id="boardingRoomRate"  value="650"/>
         <div class="form-row">
-          <div><label>Owner First Name</label><input type="text" placeholder="Juan"/></div>
-          <div><label>Owner Last Name</label><input type="text" placeholder="dela Cruz"/></div>
+          <div><label>Owner First Name</label><input type="text" name="first_name" placeholder="Juan" required/></div>
+          <div><label>Owner Last Name</label><input type="text" name="last_name" placeholder="dela Cruz" required/></div>
         </div>
         <div class="form-row">
-          <div><label>Email</label><input type="email" placeholder="you@email.com"/></div>
-          <div><label>Contact Number</label><input type="tel" placeholder="+63 9XX XXX XXXX"/></div>
+          <div><label>Email</label><input type="email" name="email" placeholder="you@email.com" required/></div>
+          <div><label>Contact Number</label><input type="tel" name="contact_number" placeholder="+63 9XX XXX XXXX" required/></div>
         </div>
         <div class="form-row">
-          <div><label>Pet Name</label><input type="text" placeholder="Mochi"/></div>
-          <div><label>Breed</label><input type="text" placeholder="Shih Tzu"/></div>
+          <div><label>Pet Name</label><input type="text" name="pet_name" placeholder="Mochi" required/></div>
+          <div><label>Breed</label><input type="text" name="pet_breed" placeholder="Shih Tzu"/></div>
         </div>
         <div class="form-row">
-          <div><label>Check-in Date</label><input type="date"/></div>
-          <div><label>Check-out Date</label><input type="date"/></div>
+          <div><label>Check-in Date</label><input type="date" name="check_in_date" required/></div>
+          <div><label>Check-out Date</label><input type="date" name="check_out_date" required/></div>
         </div>
         <div class="form-row full-row">
           <div>
             <label>Special Instructions</label>
-            <textarea placeholder="Dietary needs, behavior notes, etc." rows="3"></textarea>
+            <textarea name="special_instructions" placeholder="Dietary needs, behavior notes, etc." rows="3"></textarea>
           </div>
         </div>
         <div class="modal-price-summary" id="boardingPriceSummary">
           <div>Estimated rate: <strong id="boardingRate">₱650 / night</strong></div>
           <div class="price-note">Final total calculated at check-out.</div>
         </div>
+        <div id="boardingError" style="display:none; color:#c0392b; font-size:.8rem;
+             background:rgba(192,57,43,.08); padding:8px 12px; border-radius:6px; margin-bottom:8px;"></div>
         <div class="modal-buttons">
           <button type="button" onclick="closeBoardingModal()">Cancel</button>
-          <button type="submit" onclick="handleBoardingSubmit(event)">Confirm Reservation</button>
+          <button type="submit" id="boardingSubmitBtn" onclick="handleBoardingSubmit(event)">Confirm Reservation</button>
         </div>
       </form>
     </div>
@@ -610,54 +615,59 @@
   ═══════════════════════════════════════════════ -->
   <div id="confinementModal" class="modal">
     <div class="modal-content modal-content-wide">
-      <form class="appointment-form">
+      <form class="appointment-form" id="confinementForm">
         <h2>🏥 Pet Admission Form</h2>
         <div class="selected-service-pill conf-pill" id="confServicePill">Recovery Suite</div>
+        <!-- Hidden fields set by openConfinementModal() -->
+        <input type="hidden" name="ward_type"    id="confWardType"  value="Recovery Suite"/>
+        <input type="hidden" name="rate_per_day" id="confWardRate"  value="1500"/>
         <div class="form-row">
-          <div><label>Owner First Name</label><input type="text" placeholder="Maria"/></div>
-          <div><label>Owner Last Name</label><input type="text" placeholder="Santos"/></div>
+          <div><label>Owner First Name</label><input type="text" name="first_name" placeholder="Maria" required/></div>
+          <div><label>Owner Last Name</label><input type="text" name="last_name" placeholder="Santos" required/></div>
         </div>
         <div class="form-row">
-          <div><label>Email</label><input type="email" placeholder="you@email.com"/></div>
-          <div><label>Contact Number</label><input type="tel" placeholder="+63 9XX XXX XXXX"/></div>
+          <div><label>Email</label><input type="email" name="email" placeholder="you@email.com" required/></div>
+          <div><label>Contact Number</label><input type="tel" name="contact_number" placeholder="+63 9XX XXX XXXX" required/></div>
         </div>
         <div class="form-row">
-          <div><label>Pet Name</label><input type="text" placeholder="Choco"/></div>
-          <div><label>Breed</label><input type="text" placeholder="Beagle"/></div>
+          <div><label>Pet Name</label><input type="text" name="pet_name" placeholder="Choco" required/></div>
+          <div><label>Breed</label><input type="text" name="pet_breed" placeholder="Beagle"/></div>
         </div>
         <div class="form-row">
-          <div><label>Age</label><input type="text" placeholder="3 years"/></div>
-          <div><label>Weight (kg)</label><input type="number" placeholder="7.5" step="0.1"/></div>
+          <div><label>Age</label><input type="text" name="pet_age" placeholder="3 years"/></div>
+          <div><label>Weight (kg)</label><input type="number" name="pet_weight" placeholder="7.5" step="0.1"/></div>
         </div>
         <div class="form-row">
-          <div><label>Admission Date</label><input type="date"/></div>
-          <div><label>Estimated Duration</label><input type="text" placeholder="e.g. 3 days"/></div>
+          <div><label>Admission Date</label><input type="date" name="admission_date" required/></div>
+          <div><label>Estimated Duration</label><input type="text" name="estimated_duration" placeholder="e.g. 3 days"/></div>
         </div>
         <div class="form-row full-row">
           <div>
             <label>Chief Complaint / Diagnosis</label>
-            <textarea placeholder="Describe symptoms or diagnosis..." rows="2"></textarea>
+            <textarea name="chief_complaint" placeholder="Describe symptoms or diagnosis..." rows="2"></textarea>
           </div>
         </div>
         <div class="form-row full-row">
           <div>
             <label>Current Medications (if any)</label>
-            <textarea placeholder="List current meds and dosages..." rows="2"></textarea>
+            <textarea name="current_medications" placeholder="List current meds and dosages..." rows="2"></textarea>
           </div>
         </div>
         <div class="form-row full-row">
           <div>
             <label>Allergies / Special Notes</label>
-            <textarea placeholder="Known allergies, dietary restrictions, behavior notes..." rows="2"></textarea>
+            <textarea name="allergies_notes" placeholder="Known allergies, dietary restrictions, behavior notes..." rows="2"></textarea>
           </div>
         </div>
         <div class="modal-price-summary conf-price-summary" id="confPriceSummary">
           <div>Admission rate: <strong id="confRate">₱1,500 / day</strong></div>
           <div class="price-note">A 50% deposit is required upon admission.</div>
         </div>
+        <div id="confinementError" style="display:none; color:#c0392b; font-size:.8rem;
+             background:rgba(192,57,43,.08); padding:8px 12px; border-radius:6px; margin-bottom:8px;"></div>
         <div class="modal-buttons">
           <button type="button" onclick="closeConfinementModal()">Cancel</button>
-          <button type="submit" onclick="handleConfinementSubmit(event)">Admit Pet</button>
+          <button type="submit" id="confinementSubmitBtn" onclick="handleConfinementSubmit(event)">Admit Pet</button>
         </div>
       </form>
     </div>
@@ -997,42 +1007,143 @@
     function openBoardingModal(name, price) {
       document.getElementById('boardingServicePill').textContent = name;
       document.getElementById('boardingRate').textContent = '₱' + price.toLocaleString() + ' / night';
+      document.getElementById('boardingRoomType').value  = name;
+      document.getElementById('boardingRoomRate').value  = price;
+      document.getElementById('boardingError').style.display = 'none';
+      document.getElementById('boardingForm').reset();
+      // Re-set hidden fields after reset
+      document.getElementById('boardingRoomType').value = name;
+      document.getElementById('boardingRoomRate').value = price;
       document.getElementById('boardingModal').style.display = 'flex';
     }
-    function closeBoardingModal() { document.getElementById('boardingModal').style.display = 'none'; }
-    document.getElementById('boardingModal').addEventListener('click', function(e) { if (e.target === this) closeBoardingModal(); });
-    function handleBoardingSubmit(e) { e.preventDefault(); alert('Reservation confirmed! Our team will reach out shortly to finalize your booking.'); closeBoardingModal(); }
+    function closeBoardingModal() {
+      document.getElementById('boardingModal').style.display = 'none';
+    }
+    document.getElementById('boardingModal').addEventListener('click', function(e) {
+      if (e.target === this) closeBoardingModal();
+    });
+    async function handleBoardingSubmit(e) {
+      e.preventDefault();
+      const errEl = document.getElementById('boardingError');
+      const btn   = document.getElementById('boardingSubmitBtn');
+      errEl.style.display = 'none';
+      btn.disabled    = true;
+      btn.textContent = 'Submitting…';
+
+      const formData = new FormData(document.getElementById('boardingForm'));
+
+      try {
+        const res  = await fetch('backend/boarding/submit_boarding.php', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (data.success) {
+          closeBoardingModal();
+          alert(data.message);
+        } else {
+          errEl.textContent   = '⚠️ ' + data.message;
+          errEl.style.display = 'block';
+        }
+      } catch {
+        errEl.textContent   = '⚠️ Network error. Please make sure the server is running.';
+        errEl.style.display = 'block';
+      } finally {
+        btn.disabled    = false;
+        btn.textContent = 'Confirm Reservation';
+      }
+    }
 
     // Confinement Modal
     function openConfinementModal(name, price) {
       document.getElementById('confServicePill').textContent = name;
       document.getElementById('confRate').textContent = '₱' + price.toLocaleString() + ' / day';
+      document.getElementById('confWardType').value  = name;
+      document.getElementById('confWardRate').value  = price;
+      document.getElementById('confinementError').style.display = 'none';
+      document.getElementById('confinementForm').reset();
+      document.getElementById('confWardType').value = name;
+      document.getElementById('confWardRate').value = price;
       document.getElementById('confinementModal').style.display = 'flex';
     }
     function closeConfinementModal() { document.getElementById('confinementModal').style.display = 'none'; }
     document.getElementById('confinementModal').addEventListener('click', function(e) { if (e.target === this) closeConfinementModal(); });
-    function handleConfinementSubmit(e) { e.preventDefault(); alert('Admission form submitted! Our veterinary team will prepare for your pet\'s arrival.'); closeConfinementModal(); }
+    async function handleConfinementSubmit(e) {
+      e.preventDefault();
+      const errEl = document.getElementById('confinementError');
+      const btn   = document.getElementById('confinementSubmitBtn');
+      errEl.style.display = 'none';
+      btn.disabled    = true;
+      btn.textContent = 'Submitting…';
+
+      const formData = new FormData(document.getElementById('confinementForm'));
+
+      try {
+        const res  = await fetch('backend/confinement/submit_confinement.php', {
+          method: 'POST', body: formData
+        });
+        const data = await res.json();
+        if (data.success) {
+          closeConfinementModal();
+          alert(data.message);
+        } else {
+          errEl.textContent   = '⚠️ ' + data.message;
+          errEl.style.display = 'block';
+        }
+      } catch {
+        errEl.textContent   = '⚠️ Network error. Please make sure the server is running.';
+        errEl.style.display = 'block';
+      } finally {
+        btn.disabled    = false;
+        btn.textContent = 'Admit Pet';
+      }
+    }
 
     // Med Log Modal
     function openMedLogModal() { document.getElementById('medLogModal').style.display = 'flex'; }
     function closeMedLogModal() { document.getElementById('medLogModal').style.display = 'none'; }
     document.getElementById('medLogModal').addEventListener('click', function(e) { if (e.target === this) closeMedLogModal(); });
-    function saveMedEntry() {
-      const pet = document.getElementById('medPetName').value.trim();
-      const med = document.getElementById('medName').value.trim();
+    async function saveMedEntry() {
+      const pet    = document.getElementById('medPetName').value.trim();
+      const med    = document.getElementById('medName').value.trim();
       const dosage = document.getElementById('medDosage').value.trim();
-      const route = document.getElementById('medRoute').value;
-      const admin = document.getElementById('medAdmin').value.trim();
+      const route  = document.getElementById('medRoute').value;
+      const admin  = document.getElementById('medAdmin').value.trim();
       const status = document.getElementById('medStatus').value;
       if (!pet || !med || !dosage || !admin) { alert('Please fill in all fields.'); return; }
-      const now = new Date();
-      const dateStr = now.toLocaleString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' + now.toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' });
-      const tbody = document.getElementById('medLogBody');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${dateStr}</td><td>${pet}</td><td>${med}</td><td>${dosage}</td><td>${route}</td><td>${admin}</td><td><span class="med-status ${status === 'Given' ? 'done' : 'pending'}">${status}</span></td>`;
-      tbody.insertBefore(tr, tbody.firstChild);
-      document.getElementById('medLogForm').reset();
-      closeMedLogModal();
+
+      const formData = new FormData();
+      formData.append('pet_name',        pet);
+      formData.append('medication_name', med);
+      formData.append('dosage',          dosage);
+      formData.append('route',           route);
+      formData.append('administered_by', admin);
+      formData.append('status',          status);
+
+      try {
+        const res  = await fetch('backend/confinement/add_medication_log.php', {
+          method: 'POST', body: formData
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          // Inject the new row into the table immediately (optimistic UI)
+          const tbody  = document.getElementById('medLogBody');
+          const tr     = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${data.date_str}</td>
+            <td>${pet}</td><td>${med}</td><td>${dosage}</td>
+            <td>${route}</td><td>${admin}</td>
+            <td><span class="med-status ${status === 'Given' ? 'done' : 'pending'}">${status}</span></td>`;
+          tbody.insertBefore(tr, tbody.firstChild);
+          document.getElementById('medLogForm').reset();
+          closeMedLogModal();
+        } else {
+          alert('⚠️ ' + data.message);
+        }
+      } catch {
+        alert('⚠️ Network error. Please make sure the server is running.');
+      }
     }
 
     // Billing Modal
@@ -1071,7 +1182,53 @@
       document.getElementById('customNote').textContent = count === 0 ? 'Select at least one service to get started.' : count + ' service' + (count > 1 ? 's' : '') + ' selected.';
       document.getElementById('customConfirmBtn').disabled = count === 0;
     }
-    function confirmCustom() { alert('Your custom package has been submitted! Our team will confirm your booking shortly.'); closeCustom(); document.querySelectorAll('.addon-check').forEach(c => c.checked = false); calcTotal(); }
+    async function confirmCustom() {
+      // Collect selected services
+      const selected = [];
+      document.querySelectorAll('.addon-check').forEach(c => {
+        if (c.checked) {
+          const label = c.closest('label');
+          const name  = label.querySelector('.addon-name')?.textContent.trim() || 'Service';
+          const price = parseInt(c.dataset.price);
+          selected.push({ name, price });
+        }
+      });
+      if (selected.length === 0) return;
+
+      // Prompt for customer info before submitting
+      const firstName = prompt('Your first name:')?.trim();
+      if (!firstName) return;
+      const lastName  = prompt('Your last name:')?.trim();
+      if (!lastName) return;
+      const email     = prompt('Your email address:')?.trim();
+      if (!email) return;
+      const petName   = prompt('Your pet\'s name (optional):')?.trim() || '';
+
+      const totalPrice = selected.reduce((s, i) => s + i.price, 0);
+
+      const formData = new FormData();
+      formData.append('first_name',        firstName);
+      formData.append('last_name',         lastName);
+      formData.append('email',             email);
+      formData.append('pet_name',          petName);
+      formData.append('selected_services', JSON.stringify(selected));
+      formData.append('total_price',       totalPrice);
+
+      try {
+        const res  = await fetch('backend/packages_custom/submit_custom_package.php', {
+          method: 'POST', body: formData
+        });
+        const data = await res.json();
+        alert(data.success ? data.message : '⚠️ ' + data.message);
+        if (data.success) {
+          closeCustom();
+          document.querySelectorAll('.addon-check').forEach(c => c.checked = false);
+          calcTotal();
+        }
+      } catch {
+        alert('⚠️ Network error. Please make sure the server is running.');
+      }
+    }
 
     function handleFileUpload(input) {
       document.getElementById('fileName').textContent = input.files[0] ? input.files[0].name : '';

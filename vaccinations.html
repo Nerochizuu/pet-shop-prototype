@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vaccinations – PawShop Admin</title>
+  <title>Vaccinations – PawPriority Admin</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="shared ui.css" />
 </head>
@@ -11,11 +11,12 @@
 <div class="dash">
 
   <aside class="sidebar">
-    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawShop Admin</div>
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
     <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
-    <a href="appointment.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="appointments.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
     <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
     <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="orders.html" class="nav-item"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Orders</a>
     <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
     <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
     <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
@@ -27,7 +28,7 @@
     <div class="topbar">
       <h1>Vaccination Records</h1>
       <div class="topbar-right">
-        <span class="topbar-date">Friday, May 15, 2026</span>
+        <span class="topbar-date" id="todayDate"></span>
         <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
         <div class="avatar">AD</div>
       </div>
@@ -36,23 +37,23 @@
     <div class="metric-row">
       <div class="metric-card">
         <div class="metric-label"><i class="ti ti-circle-check" aria-hidden="true"></i> Up to date</div>
-        <div class="metric-value">178</div>
-        <div class="metric-sub">Pets fully vaccinated</div>
+        <div class="metric-value" id="metricUpToDate">—</div>
+        <div class="metric-sub">Fully vaccinated</div>
       </div>
       <div class="metric-card">
         <div class="metric-label"><i class="ti ti-clock" aria-hidden="true"></i> Due soon</div>
-        <div class="metric-value">21</div>
+        <div class="metric-value" id="metricDueSoon">—</div>
         <div class="metric-sub">Within 30 days</div>
       </div>
       <div class="metric-card">
         <div class="metric-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Overdue</div>
-        <div class="metric-value">14</div>
+        <div class="metric-value" id="metricOverdue">—</div>
         <div class="metric-sub">Past due date</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label"><i class="ti ti-paw" aria-hidden="true"></i> Total pets tracked</div>
-        <div class="metric-value">213</div>
-        <div class="metric-sub">All registered pets</div>
+        <div class="metric-label"><i class="ti ti-paw" aria-hidden="true"></i> Total records</div>
+        <div class="metric-value" id="metricTotalPets">—</div>
+        <div class="metric-sub">All vaccination entries</div>
       </div>
     </div>
 
@@ -60,17 +61,23 @@
       <div class="card-header">
         <span class="card-title"><i class="ti ti-syringe" aria-hidden="true"></i>Vaccination records</span>
         <div class="toolbar">
-          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Search pet or owner...</div>
+          <div class="search-box">
+            <i class="ti ti-search" aria-hidden="true"></i>
+            <input type="text" id="vaccSearchInput" placeholder="Search pet or owner..."
+              style="border:none;background:transparent;outline:none;font-family:inherit;font-size:inherit;color:inherit;width:170px;" />
+          </div>
           <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Filter</div>
-          <button class="add-btn"><i class="ti ti-plus" aria-hidden="true"></i> Add record</button>
+          <button class="add-btn" onclick="openAddVaccModal()">
+            <i class="ti ti-plus" aria-hidden="true"></i> Add record
+          </button>
         </div>
       </div>
 
-      <div class="tab-row">
-        <div class="tab active">All (213)</div>
-        <div class="tab">Overdue (14)</div>
-        <div class="tab">Due soon (21)</div>
-        <div class="tab">Up to date (178)</div>
+      <div class="tab-row" id="vaccTabs">
+        <div class="tab active" onclick="setVaccFilter('all', this)">All</div>
+        <div class="tab" onclick="setVaccFilter('overdue', this)">Overdue</div>
+        <div class="tab" onclick="setVaccFilter('due_soon', this)">Due soon</div>
+        <div class="tab" onclick="setVaccFilter('up_to_date', this)">Up to date</div>
       </div>
 
       <div class="table-wrap">
@@ -79,91 +86,168 @@
             <tr>
               <th>Pet</th>
               <th>Owner</th>
-              <th>Breed</th>
               <th>Vaccine</th>
-              <th>Last given</th>
+              <th>Date given</th>
               <th>Next due</th>
+              <th>Administered by</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="vaccinationsTableBody">
             <tr>
-              <td><div class="td-name">Mochi</div><div class="td-sub">Pomeranian · 2 yrs</div></td>
-              <td><div>Claire Tan</div><div class="td-sub">claire@email.com</div></td>
-              <td>Pomeranian</td>
-              <td>Rabies</td>
-              <td>May 10, 2025</td>
-              <td style="color:#E24B4A;">May 10, 2026</td>
-              <td><span class="badge badge-red">Overdue</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td><div class="td-name">Buddy</div><div class="td-sub">Shih Tzu · 3 yrs</div></td>
-              <td><div>Maria Santos</div><div class="td-sub">maria@email.com</div></td>
-              <td>Shih Tzu</td>
-              <td>Distemper</td>
-              <td>Jun 1, 2025</td>
-              <td style="color:#EF9F27;">Jun 1, 2026</td>
-              <td><span class="badge badge-amber">Due soon</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td><div class="td-name">Luna</div><div class="td-sub">Poodle · 4 yrs</div></td>
-              <td><div>Jose Reyes</div><div class="td-sub">jose@email.com</div></td>
-              <td>Poodle</td>
-              <td>Bordetella</td>
-              <td>Nov 20, 2025</td>
-              <td>Nov 20, 2026</td>
-              <td><span class="badge badge-green">Up to date</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td><div class="td-name">Max</div><div class="td-sub">Golden Retriever · 1 yr</div></td>
-              <td><div>Ryan Lim</div><div class="td-sub">ryan@email.com</div></td>
-              <td>Golden Retriever</td>
-              <td>Rabies</td>
-              <td>Jan 5, 2026</td>
-              <td>Jan 5, 2027</td>
-              <td><span class="badge badge-green">Up to date</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td><div class="td-name">Coco</div><div class="td-sub">Maltese · 5 yrs</div></td>
-              <td><div>Lea Garcia</div><div class="td-sub">lea@email.com</div></td>
-              <td>Maltese</td>
-              <td>DHPP</td>
-              <td>Mar 15, 2025</td>
-              <td style="color:#E24B4A;">Mar 15, 2026</td>
-              <td><span class="badge badge-red">Overdue</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
-            </tr>
-            <tr>
-              <td><div class="td-name">Kobe</div><div class="td-sub">Labrador · 2 yrs</div></td>
-              <td><div>Paolo Cruz</div><div class="td-sub">paolo@email.com</div></td>
-              <td>Labrador</td>
-              <td>Leptospirosis</td>
-              <td>Feb 10, 2026</td>
-              <td>Feb 10, 2027</td>
-              <td><span class="badge badge-green">Up to date</span></td>
-              <td><div class="action-btns"><button class="icon-btn" aria-label="View"><i class="ti ti-eye" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Edit"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="icon-btn" aria-label="Notify"><i class="ti ti-send" aria-hidden="true"></i></button></div></td>
+              <td colspan="8" style="text-align:center; padding:24px; color:#5A8A9A;">
+                Loading vaccination records...
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="pagination">
-        <span>Showing 6 of 213 records</span>
+        <span id="vaccResultsCount">Loading...</span>
         <div class="page-btns">
           <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
           <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">3</button>
           <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
   </main>
 </div>
+
+<!-- Add Vaccination Record Modal -->
+<div class="modal-overlay" id="addVaccModal">
+  <div class="modal-content">
+    <h2>Add Vaccination Record</h2>
+    <form class="appointment-form" id="addVaccForm" onsubmit="submitAddVacc(event)">
+      <div class="form-row">
+        <div>
+          <label>Customer Email</label>
+          <input type="email" name="customer_email" id="vaccCustomerEmail"
+            placeholder="customer@email.com" required
+            oninput="lookupCustomerPets(this.value)" />
+        </div>
+        <div>
+          <label>Pet</label>
+          <select name="pet_id" id="vaccPetSelect" required>
+            <option value="">Enter email first...</option>
+          </select>
+          <input type="hidden" name="customer_id" id="vaccCustomerId" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Vaccine</label>
+          <select name="vaccine_type_id" id="vaccineTypeSelect" required>
+            <option value="">Loading...</option>
+          </select>
+        </div>
+        <div>
+          <label>Date Given</label>
+          <input type="date" name="date_given" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Next Due Date <span style="font-size:11px;color:#5A8A9A;">(optional)</span></label>
+          <input type="date" name="next_due_date" />
+        </div>
+        <div>
+          <label>Administered By</label>
+          <input type="text" name="administered_by" placeholder="e.g. Dr. Santos" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Batch/Lot Number <span style="font-size:11px;color:#5A8A9A;">(optional)</span></label>
+          <input type="text" name="batch_number" placeholder="e.g. LOT-2024-001" />
+        </div>
+        <div>
+          <label>Notes <span style="font-size:11px;color:#5A8A9A;">(optional)</span></label>
+          <input type="text" name="notes" placeholder="Additional notes..." />
+        </div>
+      </div>
+      <div class="modal-buttons">
+        <button type="button" onclick="closeAddVaccModal()">Cancel</button>
+        <button type="submit">Save Record</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Due Date Modal -->
+<div class="modal-overlay" id="editVaccModal">
+  <div class="modal-content" style="width:360px;">
+    <h2>Update Vaccination Record</h2>
+    <form class="appointment-form" id="editVaccForm" onsubmit="submitEditVacc(event)">
+      <input type="hidden" name="record_id" id="editRecordId" />
+      <div style="display:flex; flex-direction:column; gap:5px;">
+        <label>Next Due Date</label>
+        <input type="date" name="next_due_date" id="editDueDate" required />
+      </div>
+      <div style="display:flex; flex-direction:column; gap:5px; margin-top:10px;">
+        <label>Notes <span style="font-size:11px;color:#5A8A9A;">(optional)</span></label>
+        <input type="text" name="notes" placeholder="Update notes..." />
+      </div>
+      <div class="modal-buttons">
+        <button type="button" onclick="closeEditModal()">Cancel</button>
+        <button type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  // Close modals on backdrop click
+  document.getElementById('addVaccModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAddVaccModal();
+  });
+  document.getElementById('editVaccModal').addEventListener('click', function(e) {
+    if (e.target === this) closeEditModal();
+  });
+
+  // Debounced search
+  let vaccSearchTimeout;
+  document.getElementById('vaccSearchInput').addEventListener('input', function () {
+    clearTimeout(vaccSearchTimeout);
+    vaccSearchTimeout = setTimeout(() => loadVaccinations(currentVaccFilter), 300);
+  });
+
+  // Look up pets by customer email for the add form
+  let petLookupTimeout;
+  function lookupCustomerPets(email) {
+    clearTimeout(petLookupTimeout);
+    if (email.length < 5) return;
+    petLookupTimeout = setTimeout(() => {
+      fetch(`backend/customers/get_customers.php?search=${encodeURIComponent(email)}`)
+        .then(res => res.json())
+        .then(data => {
+          const petSelect = document.getElementById('vaccPetSelect');
+          const custIdInput = document.getElementById('vaccCustomerId');
+          petSelect.innerHTML = '<option value="">Select pet...</option>';
+          if (data.customers && data.customers.length > 0) {
+            const customer = data.customers[0];
+            custIdInput.value = customer.customer_id;
+            customer.pets.forEach(p => {
+              const opt = document.createElement('option');
+              opt.value       = p.pet_id;
+              opt.textContent = p.pet_name + (p.pet_breed ? ` (${p.pet_breed})` : '');
+              petSelect.appendChild(opt);
+            });
+          } else {
+            petSelect.innerHTML = '<option value="">Customer not found</option>';
+          }
+        });
+    }, 400);
+  }
+</script>
+
+<script src="backend/vaccinations/vaccinations-table.js"></script>
+
 </body>
 </html>

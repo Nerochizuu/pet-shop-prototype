@@ -33,13 +33,61 @@
     </div>
   </div>
 
+  <!-- CHECKOUT MODAL -->
+  <div id="checkoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);
+       z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#fff; border-radius:16px; padding:2rem; width:90%; max-width:420px;
+                font-family:'DM Sans',sans-serif; box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="margin-bottom:1.2rem; color:#1B2A4A; font-family:'Playfair Display',serif;">Complete your order</h3>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <label style="font-size:.8rem; font-weight:500; color:#2C4A6E; display:block; margin-bottom:4px;">Full Name *</label>
+          <input type="text" id="checkoutName" placeholder="Juan dela Cruz"
+            style="width:100%; padding:10px 12px; border:1.5px solid #b8e8eb; border-radius:8px;
+                   font-family:inherit; font-size:.9rem; outline:none;" />
+        </div>
+        <div>
+          <label style="font-size:.8rem; font-weight:500; color:#2C4A6E; display:block; margin-bottom:4px;">Email Address *</label>
+          <input type="email" id="checkoutEmail" placeholder="you@email.com"
+            style="width:100%; padding:10px 12px; border:1.5px solid #b8e8eb; border-radius:8px;
+                   font-family:inherit; font-size:.9rem; outline:none;" />
+        </div>
+        <div>
+          <label style="font-size:.8rem; font-weight:500; color:#2C4A6E; display:block; margin-bottom:4px;">Contact Number</label>
+          <input type="tel" id="checkoutPhone" placeholder="+63 9XX XXX XXXX"
+            style="width:100%; padding:10px 12px; border:1.5px solid #b8e8eb; border-radius:8px;
+                   font-family:inherit; font-size:.9rem; outline:none;" />
+        </div>
+        <div>
+          <label style="font-size:.8rem; font-weight:500; color:#2C4A6E; display:block; margin-bottom:4px;">Notes (optional)</label>
+          <textarea id="checkoutNotes" placeholder="Special instructions, preferred pickup time…"
+            style="width:100%; padding:10px 12px; border:1.5px solid #b8e8eb; border-radius:8px;
+                   font-family:inherit; font-size:.9rem; outline:none; height:72px; resize:none;"></textarea>
+        </div>
+      </div>
+      <div id="checkoutError" style="display:none; color:#c0392b; font-size:.8rem;
+           margin-top:10px; background:rgba(192,57,43,.08); padding:8px 12px; border-radius:6px;"></div>
+      <div style="display:flex; gap:10px; margin-top:1.4rem;">
+        <button onclick="closeCheckoutModal()"
+          style="flex:1; padding:11px; border:1.5px solid #b8e8eb; border-radius:8px;
+                 background:#fff; cursor:pointer; font-family:inherit; font-size:.9rem;">
+          Cancel
+        </button>
+        <button onclick="submitOrder()" id="placeOrderBtn"
+          style="flex:2; padding:11px; border:none; border-radius:8px; background:#1B2A4A;
+                 color:#fff; cursor:pointer; font-family:inherit; font-size:.9rem; font-weight:500;">
+          Place Order
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- NAVBAR -->
   <nav id="navbar">
     <a href="#" class="nav-brand">
       <div class="nav-logo">🐾</div>
       <span class="nav-name">PawPriority</span>
     </a>
-
     <ul class="nav-links">
       <li><a href="#" class="active">Home</a></li>
       <li><a href="aboutus.html">About Us</a></li>
@@ -48,7 +96,6 @@
       <li><a href="#shop">Shop</a></li>
       <li><a href="packages.html">Packages</a></li>
     </ul>
-
     <div class="nav-right">
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
@@ -71,23 +118,16 @@
     <div class="paw-scatter">🐾</div>
     <div class="paw-scatter">🐾</div>
     <div class="paw-scatter">🐾</div>
-
     <div class="hero-badge"><span></span> Welcome to our Customer Portal</div>
     <h1 class="hero-title">Everything your pet needs,<br/><em>all in one place.</em></h1>
     <p class="hero-sub">Browse our services, check our announcements, and shop premium pet products — all from right here.</p>
-
     <div class="hero-ctas">
       <a href="#shop" class="btn-primary">Shop Products</a>
       <a href="#announcements" class="btn-outline">View Announcements</a>
     </div>
-
     <div class="hero-img-wrap">
-      <img
-        class="hero-img"
-        src="images/dog and cat.png"
-        alt="dog and cat"
-        onerror="this.style.background='#d4a882';this.removeAttribute('src')"
-      />
+      <img class="hero-img" src="images/dog and cat.png" alt="dog and cat"
+        onerror="this.style.background='#d4a882';this.removeAttribute('src')" />
     </div>
   </section>
 
@@ -96,14 +136,12 @@
     <p class="section-label">Our Shop</p>
     <h2 class="section-title">Get to know PawPriority</h2>
     <p class="section-sub">Everything you need to know about us before your first visit.</p>
-
     <div class="details-grid">
       <div class="detail-card">
         <div class="detail-icon">🐾</div>
         <h3>About Us</h3>
         <p>PawPriority is a full-service pet grooming and wellness shop founded by passionate animal lovers. We believe every pet deserves expert, compassionate care — from their first bath to their senior wellness check. Our certified groomers and friendly staff are dedicated to making every visit a happy one.</p>
       </div>
-
       <div class="detail-card">
         <div class="detail-icon">📞</div>
         <h3>Contact Information</h3>
@@ -114,7 +152,6 @@
           <p>📸 <a href="#">@pawpriority.ph on Instagram</a></p>
         </address>
       </div>
-
       <div class="detail-card">
         <div class="detail-icon">📍</div>
         <h3>Location</h3>
@@ -126,16 +163,15 @@
           <p>Map placeholder</p>
         </div>
       </div>
-
       <div class="detail-card">
         <div class="detail-icon">✂️</div>
         <h3>Our Services</h3>
-        <p>We offer full grooming, basic grooming, wellness checks, vaccinations, dental care, and overnight boarding. Every service is carried out with pet-safe products and lots of love. <a href="pawpriority-packages.html">View all packages →</a></p>
+        <p>We offer full grooming, basic grooming, wellness checks, vaccinations, dental care, and overnight boarding. Every service is carried out with pet-safe products and lots of love. <a href="packages.html">View all packages →</a></p>
       </div>
     </div>
   </section>
 
-  <!-- OPERATING HOURS -->
+  <!-- OPERATING HOURS — live from DB -->
   <div class="hours-section" id="hours">
     <div class="hours-inner">
       <div class="hours-text">
@@ -143,110 +179,35 @@
         <h2 class="section-title">When to visit us</h2>
         <div class="status-badge open" id="statusBadge">
           <span class="status-dot"></span>
-          <span id="statusText">We're open now!</span>
+          <span id="statusText">Checking hours…</span>
         </div>
         <p class="section-sub">Walk-ins are welcome during operating hours. For guaranteed slots, we recommend booking at least a day in advance through our packages page.</p>
       </div>
-
-      <div class="hours-table">
-        <div class="hours-row" id="row-mon">
-          <span class="hours-day">Monday</span>
-          <span class="hours-time">8:00 AM – 6:00 PM</span>
-        </div>
-        <div class="hours-row" id="row-tue">
-          <span class="hours-day">Tuesday</span>
-          <span class="hours-time">8:00 AM – 6:00 PM</span>
-        </div>
-        <div class="hours-row" id="row-wed">
-          <span class="hours-day">Wednesday</span>
-          <span class="hours-time">8:00 AM – 6:00 PM</span>
-        </div>
-        <div class="hours-row" id="row-thu">
-          <span class="hours-day">Thursday</span>
-          <span class="hours-time">8:00 AM – 6:00 PM</span>
-        </div>
-        <div class="hours-row" id="row-fri">
-          <span class="hours-day">Friday</span>
-          <span class="hours-time">8:00 AM – 7:00 PM</span>
-        </div>
-        <div class="hours-row" id="row-sat">
-          <span class="hours-day">Saturday</span>
-          <span class="hours-time">8:00 AM – 6:00 PM</span>
-        </div>
-        <div class="hours-row" id="row-sun">
-          <span class="hours-day">Sunday</span>
-          <span class="hours-time">8:00 AM – 6:00 PM</span>
-        </div>
+      <!-- rows injected by loadHours() -->
+      <div class="hours-table" id="hoursTable">
+        <div style="padding:12px 0; color:var(--text-muted); font-size:.9rem;">Loading hours…</div>
       </div>
     </div>
   </div>
 
-  <!-- ANNOUNCEMENTS -->
+  <!-- ANNOUNCEMENTS — live from DB -->
   <section class="section" id="announcements">
     <p class="section-label">Announcements</p>
     <h2 class="section-title">Latest from PawPriority</h2>
     <p class="section-sub">Stay updated with our latest news, promos, and important notices from the admin team.</p>
-
-    <div class="announce-grid">
-
-      <div class="announce-card pinned">
-        <div class="announce-icon-wrap promo">🎉</div>
-        <div class="announce-body">
-          <div class="announce-meta">
-            <span class="announce-tag promo">Promo</span>
-            <span class="announce-pin">📌 Pinned</span>
-            <span class="announce-date">May 20, 2026</span>
-          </div>
-          <div class="announce-title">Summer Grooming Sale — 20% Off Full Grooming!</div>
-          <div class="announce-text">Celebrate the season with your furry friend! Get 20% off Full Grooming sessions every Tuesday and Wednesday throughout June. Book now to secure your slot — limited slots available per day.</div>
-        </div>
+    <!-- cards injected by loadAnnouncements() -->
+    <div class="announce-grid" id="announceGrid">
+      <div style="grid-column:1/-1; text-align:center; padding:40px 0; color:var(--text-muted);">
+        Loading announcements…
       </div>
-
-      <div class="announce-card">
-        <div class="announce-icon-wrap info">📋</div>
-        <div class="announce-body">
-          <div class="announce-meta">
-            <span class="announce-tag info">Update</span>
-            <span class="announce-date">May 15, 2026</span>
-          </div>
-          <div class="announce-title">New Service: Flea & Tick Treatment Now Available</div>
-          <div class="announce-text">We've added flea and tick topical treatment as a standalone add-on service. It can be combined with any grooming package for just ₱150. Ask our staff during your next visit or add it when booking online.</div>
-        </div>
-      </div>
-
-      <div class="announce-card">
-        <div class="announce-icon-wrap alert">⚠️</div>
-        <div class="announce-body">
-          <div class="announce-meta">
-            <span class="announce-tag alert">Notice</span>
-            <span class="announce-date">May 10, 2026</span>
-          </div>
-          <div class="announce-title">Holiday Closure — May 29 (Araw ng Maynila)</div>
-          <div class="announce-text">Please note that PawPriority will be closed on May 29 in observance of the national holiday. Appointments on this date will be rescheduled. We apologize for any inconvenience and thank you for your understanding.</div>
-        </div>
-      </div>
-
-      <div class="announce-card">
-        <div class="announce-icon-wrap general">🛍️</div>
-        <div class="announce-body">
-          <div class="announce-meta">
-            <span class="announce-tag general">Shop</span>
-            <span class="announce-date">May 5, 2026</span>
-          </div>
-          <div class="announce-title">New Products In Stock — Organic Shampoos & Treats</div>
-          <div class="announce-text">We've restocked our bestselling organic coconut-based pet shampoos and added a new line of natural grain-free dog treats. Browse the shop section below to preorder or add to your cart.</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- SHOP / PRODUCTS -->
+  <!-- SHOP / PRODUCTS — live from DB -->
   <section class="section" id="shop">
     <p class="section-label">Our Products</p>
     <h2 class="section-title">Shop premium pet products</h2>
     <p class="section-sub">Curated selection of grooming supplies, treats, and accessories — available for preorder or pick-up.</p>
-
     <div class="shop-controls">
       <div class="shop-filters">
         <button class="shop-filter-btn active" onclick="filterProducts('all', this)">All</button>
@@ -265,8 +226,11 @@
         </select>
       </div>
     </div>
-
-    <div class="products-grid" id="productsGrid"></div>
+    <div class="products-grid" id="productsGrid">
+      <div style="grid-column:1/-1; text-align:center; padding:40px 0; color:var(--text-muted);">
+        Loading products…
+      </div>
+    </div>
   </section>
 
   <!-- CTA -->
@@ -289,29 +253,99 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    /* ── DATA ── */
-    const PRODUCTS = [
-      { id:1, name:'Coconut Oat Shampoo', category:'grooming', emoji:'🧴', price:280, oldPrice:320, desc:'Gentle hypoallergenic shampoo for sensitive skin. Sulfate-free formula.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
-      { id:2, name:'Slicker Brush Pro', category:'grooming', emoji:'🖌️', price:195, oldPrice:null, desc:'Premium stainless steel pin brush for all coat types. Ergonomic grip.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
-      { id:3, name:'Detangling Spray', category:'grooming', emoji:'💧', price:150, oldPrice:null, desc:'Leave-in conditioning spray that removes knots and adds shine.', badge:null, badgeType:null, stock:'low', stockLabel:'Low Stock (3 left)' },
-      { id:4, name:'Nail Grinder', category:'grooming', emoji:'⚡', price:450, oldPrice:500, desc:'Quiet electric nail grinder — stress-free grooming at home.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
-      { id:5, name:'Grain-Free Dog Treats', category:'treats', emoji:'🦴', price:120, oldPrice:null, desc:'Natural chicken-flavored treats with no artificial preservatives.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
-      { id:6, name:'Dental Chew Sticks', category:'treats', emoji:'🦷', price:95, oldPrice:null, desc:'Helps reduce plaque and freshen breath. Vanilla-mint flavor.', badge:null, badgeType:null, stock:'in', stockLabel:'In Stock' },
-      { id:7, name:'Freeze-Dried Liver Bits', category:'treats', emoji:'❤️', price:180, oldPrice:200, desc:'High-protein training treats. Single ingredient — 100% beef liver.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
-      { id:8, name:'Cat Dental Treats', category:'treats', emoji:'😺', price:85, oldPrice:null, desc:'Crunchy chicken-flavored treats that clean teeth as cats chew.', badge:null, badgeType:null, stock:'out', stockLabel:'Out of Stock' },
-      { id:9, name:'Adjustable Harness', category:'accessories', emoji:'🎽', price:350, oldPrice:null, desc:'Soft padded no-pull harness. Available in S, M, L, XL.', badge:null, badgeType:null, stock:'in', stockLabel:'In Stock' },
-      { id:10, name:'Reflective Leash', category:'accessories', emoji:'🔗', price:220, oldPrice:250, desc:'1.5m reflective rope leash for safe nighttime walks.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
-      { id:11, name:'Cooling Pet Mat', category:'accessories', emoji:'🟦', price:480, oldPrice:null, desc:'Self-cooling gel mat — perfect for warm Philippine weather.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
-      { id:12, name:'Flea & Tick Drops', category:'health', emoji:'💊', price:260, oldPrice:300, desc:'Monthly topical treatment. Safe for dogs 8 weeks and older.', badge:'Sale', badgeType:'sale', stock:'in', stockLabel:'In Stock' },
-      { id:13, name:'Vitamin E Supplements', category:'health', emoji:'🌿', price:175, oldPrice:null, desc:'Daily chewable supplement for coat, joint, and immune health.', badge:null, badgeType:null, stock:'low', stockLabel:'Low Stock (5 left)' },
-      { id:14, name:'Pet First Aid Kit', category:'health', emoji:'🧰', price:395, oldPrice:null, desc:'Essential kit with bandages, antiseptic wipes, and guide booklet.', badge:'New', badgeType:'new', stock:'in', stockLabel:'In Stock' },
-    ];
+    /* ── STATE ── */
+    let PRODUCTS        = [];   // populated from get_products.php
+    let cart            = [];
+    let filteredProducts = [];
+    let activeCategory  = 'all';
 
-    let cart = [];
-    let filteredProducts = [...PRODUCTS];
-    let activeCategory = 'all';
+    /* ════════════════════════════════════════
+       LOAD FROM BACKEND
+    ════════════════════════════════════════ */
 
-    /* ── RENDER PRODUCTS ── */
+    /* Products */
+    async function loadProducts() {
+      try {
+        const res  = await fetch('backend/home/get_products.php');
+        const data = await res.json();
+        if (data.success) {
+          PRODUCTS         = data.products;
+          filteredProducts = [...PRODUCTS];
+          renderProducts(PRODUCTS);
+        } else {
+          showGridError('productsGrid', 'Could not load products. Please try again later.');
+        }
+      } catch {
+        showGridError('productsGrid', 'Network error. Please make sure the server is running.');
+      }
+    }
+
+    /* Announcements */
+    async function loadAnnouncements() {
+      try {
+        const res  = await fetch('backend/home/get_announcements.php');
+        const data = await res.json();
+        const grid = document.getElementById('announceGrid');
+        if (data.success && data.announcements.length > 0) {
+          grid.innerHTML = data.announcements.map(a => `
+            <div class="announce-card${a.isPinned ? ' pinned' : ''}">
+              <div class="announce-icon-wrap ${a.tagType}">${a.emoji}</div>
+              <div class="announce-body">
+                <div class="announce-meta">
+                  <span class="announce-tag ${a.tagType}">${a.tag}</span>
+                  ${a.isPinned ? '<span class="announce-pin">📌 Pinned</span>' : ''}
+                  <span class="announce-date">${a.date}</span>
+                </div>
+                <div class="announce-title">${escapeHtml(a.title)}</div>
+                <div class="announce-text">${escapeHtml(a.body)}</div>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          grid.innerHTML = '<p style="grid-column:1/-1;color:var(--text-muted);font-size:.9rem;">No announcements at this time.</p>';
+        }
+      } catch {
+        document.getElementById('announceGrid').innerHTML =
+          '<p style="grid-column:1/-1;color:var(--text-muted);font-size:.9rem;">Could not load announcements.</p>';
+      }
+    }
+
+    /* Operating Hours */
+    async function loadHours() {
+      try {
+        const res  = await fetch('backend/home/get_hours.php');
+        const data = await res.json();
+        if (data.success) {
+          const dayIds = ['sun','mon','tue','wed','thu','fri','sat'];
+          document.getElementById('hoursTable').innerHTML = data.hours.map(h => `
+            <div class="hours-row${h.day_of_week === data.today ? ' today' : ''}"
+                 id="row-${dayIds[h.day_of_week]}">
+              <span class="hours-day">
+                ${h.day_of_week === data.today
+                  ? '<span class="hours-today-dot"></span>'
+                  : ''}
+                ${h.day_name}
+              </span>
+              <span class="hours-time${h.is_closed ? ' closed' : ''}">
+                ${h.is_closed ? 'Closed' : h.open_time + ' – ' + h.close_time}
+              </span>
+            </div>
+          `).join('');
+
+          const badge = document.getElementById('statusBadge');
+          const text  = document.getElementById('statusText');
+          badge.className  = 'status-badge ' + (data.is_open ? 'open' : 'closed');
+          text.textContent = data.is_open ? "We're open now!" : "We're currently closed.";
+        }
+      } catch {
+        // Fallback to JS-based open/closed check if DB unreachable
+        updateStatusFallback();
+      }
+    }
+
+    /* ════════════════════════════════════════
+       RENDER PRODUCTS
+    ════════════════════════════════════════ */
     function renderProducts(list) {
       const grid = document.getElementById('productsGrid');
       if (!list.length) {
@@ -337,15 +371,23 @@
               ${p.oldPrice ? `<span class="product-old-price">₱${p.oldPrice.toLocaleString()}</span>` : ''}
             </div>
             <div class="product-actions">
-              <button class="btn-preorder" onclick="preorder(${p.id})" ${p.stock==='out'?'disabled style="opacity:.4;cursor:not-allowed;"':''}>Preorder</button>
-              <button class="btn-cart" id="cart-btn-${p.id}" onclick="addToCart(${p.id})" ${p.stock==='out'?'disabled style="opacity:.4;cursor:not-allowed;"':''}>🛒</button>
+              <button class="btn-preorder" onclick="preorder(${p.id})"
+                ${p.stock === 'out' ? 'disabled style="opacity:.4;cursor:not-allowed;"' : ''}>
+                Preorder
+              </button>
+              <button class="btn-cart" id="cart-btn-${p.id}" onclick="addToCart(${p.id})"
+                ${p.stock === 'out' ? 'disabled style="opacity:.4;cursor:not-allowed;"' : ''}>
+                🛒
+              </button>
             </div>
           </div>
         </div>
       `).join('');
     }
 
-    /* ── FILTER ── */
+    /* ════════════════════════════════════════
+       FILTER / SEARCH / SORT
+    ════════════════════════════════════════ */
     function filterProducts(cat, btn) {
       document.querySelectorAll('.shop-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -353,15 +395,13 @@
       applyFilters();
     }
 
-    function searchProducts() {
-      applyFilters();
-    }
+    function searchProducts() { applyFilters(); }
 
     function applyFilters() {
       const q = document.getElementById('searchInput').value.toLowerCase();
       filteredProducts = PRODUCTS.filter(p => {
-        const matchCat  = activeCategory === 'all' || p.category === activeCategory;
-        const matchQ    = !q || p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+        const matchCat = activeCategory === 'all' || p.category === activeCategory;
+        const matchQ   = !q || p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
         return matchCat && matchQ;
       });
       renderProducts(filteredProducts);
@@ -369,28 +409,34 @@
 
     function sortProducts(val) {
       const list = [...filteredProducts];
-      if (val === 'low')  list.sort((a,b) => a.price - b.price);
-      if (val === 'high') list.sort((a,b) => b.price - a.price);
-      if (val === 'name') list.sort((a,b) => a.name.localeCompare(b.name));
+      if (val === 'low')  list.sort((a, b) => a.price - b.price);
+      if (val === 'high') list.sort((a, b) => b.price - a.price);
+      if (val === 'name') list.sort((a, b) => a.name.localeCompare(b.name));
       renderProducts(list);
     }
 
-    /* ── CART ── */
+    /* ════════════════════════════════════════
+       CART
+    ════════════════════════════════════════ */
     function addToCart(id) {
-      const product = PRODUCTS.find(p => p.id === id);
+      const product  = PRODUCTS.find(p => p.id === id);
       if (!product || product.stock === 'out') return;
       const existing = cart.find(i => i.id === id);
       if (existing) { existing.qty++; }
       else { cart.push({ ...product, qty: 1 }); }
       updateCartUI();
       const btn = document.getElementById('cart-btn-' + id);
-      if (btn) { btn.textContent = '✓'; btn.classList.add('added'); setTimeout(() => { btn.textContent = '🛒'; btn.classList.remove('added'); }, 1200); }
+      if (btn) {
+        btn.textContent = '✓';
+        btn.classList.add('added');
+        setTimeout(() => { btn.textContent = '🛒'; btn.classList.remove('added'); }, 1200);
+      }
       showToast(`${product.name} added to cart!`);
     }
 
     function preorder(id) {
       const product = PRODUCTS.find(p => p.id === id);
-      showToast(`Preorder placed for ${product.name}! We'll contact you soon.`);
+      if (product) showToast(`Preorder placed for ${product.name}! We'll contact you soon.`);
     }
 
     function removeFromCart(id) {
@@ -407,17 +453,15 @@
     }
 
     function updateCartUI() {
-      const total = cart.reduce((s, i) => s + i.qty, 0);
+      const total    = cart.reduce((s, i) => s + i.qty, 0);
       const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-      const countEl = document.getElementById('cartCount');
+      const countEl  = document.getElementById('cartCount');
       countEl.textContent = total;
       total > 0 ? countEl.classList.add('show') : countEl.classList.remove('show');
-
       document.getElementById('cartSubtotal').textContent = '₱' + subtotal.toLocaleString();
       document.getElementById('cartGrand').textContent    = '₱' + (subtotal + 80).toLocaleString();
       document.getElementById('cartEmpty').style.display  = cart.length ? 'none' : 'flex';
       document.getElementById('cartFooter').style.display = cart.length ? 'block' : 'none';
-
       document.getElementById('cartItems').innerHTML = cart.map(i => `
         <div class="cart-item">
           <div class="cart-item-img">${i.emoji}</div>
@@ -439,14 +483,87 @@
     function openCart()  { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
     function closeCart() { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
 
+    /* ════════════════════════════════════════
+       CHECKOUT MODAL
+    ════════════════════════════════════════ */
     function checkout() {
-      showToast('Order placed! We\'ll confirm your pickup schedule shortly. 🐾');
-      cart = [];
-      updateCartUI();
-      closeCart();
+      if (cart.length === 0) return;
+      document.getElementById('checkoutModal').style.display = 'flex';
     }
 
-    /* ── TOAST ── */
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').style.display = 'none';
+      document.getElementById('checkoutError').style.display = 'none';
+    }
+
+    async function submitOrder() {
+      const name  = document.getElementById('checkoutName').value.trim();
+      const email = document.getElementById('checkoutEmail').value.trim();
+      const phone = document.getElementById('checkoutPhone').value.trim();
+      const notes = document.getElementById('checkoutNotes').value.trim();
+      const errEl = document.getElementById('checkoutError');
+
+      errEl.style.display = 'none';
+
+      if (!name || !email) {
+        errEl.textContent   = '⚠️ Please fill in your name and email.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      if (!email.includes('@')) {
+        errEl.textContent   = '⚠️ Please enter a valid email address.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      const btn = document.getElementById('placeOrderBtn');
+      btn.disabled    = true;
+      btn.textContent = 'Placing order…';
+
+      const formData = new FormData();
+      formData.append('customer_name',  name);
+      formData.append('customer_email', email);
+      formData.append('customer_phone', phone);
+      formData.append('notes',          notes);
+      formData.append('items', JSON.stringify(
+        cart.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty }))
+      ));
+
+      try {
+        const res  = await fetch('backend/home/submit_order.php', { method: 'POST', body: formData });
+        const data = await res.json();
+
+        if (data.success) {
+          closeCheckoutModal();
+          cart = [];
+          updateCartUI();
+          closeCart();
+          showToast(data.message);
+          // Clear form for next use
+          ['checkoutName','checkoutEmail','checkoutPhone','checkoutNotes']
+            .forEach(id => document.getElementById(id).value = '');
+        } else {
+          errEl.textContent   = '⚠️ ' + data.message;
+          errEl.style.display = 'block';
+        }
+      } catch {
+        errEl.textContent   = '⚠️ Network error. Please make sure the server is running.';
+        errEl.style.display = 'block';
+      } finally {
+        btn.disabled    = false;
+        btn.textContent = 'Place Order';
+      }
+    }
+
+    /* Close checkout modal on backdrop click */
+    document.getElementById('checkoutModal').addEventListener('click', function(e) {
+      if (e.target === this) closeCheckoutModal();
+    });
+
+    /* ════════════════════════════════════════
+       TOAST
+    ════════════════════════════════════════ */
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg;
@@ -454,32 +571,32 @@
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
-    /* ── OPERATING HOURS STATUS ── */
-    function updateStatus() {
-      const now = new Date();
-      const day = now.getDay(); // 0=Sun,1=Mon,...,6=Sat
-      const hour = now.getHours();
-      const dayIds = ['sun','mon','tue','wed','thu','fri','sat'];
-      const todayId = 'row-' + dayIds[day];
+    /* ════════════════════════════════════════
+       FALLBACK: open/closed from JS (if DB unreachable)
+    ════════════════════════════════════════ */
+    function updateStatusFallback() {
+      const now    = new Date();
+      const day    = now.getDay();
+      const hour   = now.getHours();
+      const closed = [0]; // Sunday
+      const isOpen = !closed.includes(day) && hour >= 8 && hour < (day === 5 ? 19 : 18);
+      document.getElementById('statusBadge').className = 'status-badge ' + (isOpen ? 'open' : 'closed');
+      document.getElementById('statusText').textContent = isOpen ? "We're open now!" : "We're currently closed.";
+    }
 
-      // Highlight today's row
-      document.querySelectorAll('.hours-row').forEach(r => r.classList.remove('today'));
-      const todayRow = document.getElementById(todayId);
-      if (todayRow) {
-        const dot = document.createElement('span');
-        dot.className = 'hours-today-dot';
-        const daySpan = todayRow.querySelector('.hours-day');
-        if (!daySpan.querySelector('.hours-today-dot')) daySpan.prepend(dot);
-        todayRow.classList.add('today');
-      }
+    /* ════════════════════════════════════════
+       HELPERS
+    ════════════════════════════════════════ */
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
 
-      // Open/closed logic
-      const closedDays = [0]; // Sunday
-      const isOpen = !closedDays.includes(day) && hour >= 9 && hour < (day === 5 || day === 6 ? 19 : 18);
-      const badge = document.getElementById('statusBadge');
-      const text  = document.getElementById('statusText');
-      badge.className = 'status-badge ' + (isOpen ? 'open' : 'closed');
-      text.textContent = isOpen ? 'We\'re open now!' : 'We\'re currently closed.';
+    function showGridError(gridId, msg) {
+      document.getElementById(gridId).innerHTML =
+        `<p style="color:var(--text-muted);font-size:.9rem;grid-column:1/-1;padding:40px 0;">${msg}</p>`;
     }
 
     /* ── NAVBAR SCROLL ── */
@@ -487,9 +604,14 @@
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    /* ── INIT ── */
-    renderProducts(PRODUCTS);
-    updateStatus();
+    /* ════════════════════════════════════════
+       INIT — load everything on page ready
+    ════════════════════════════════════════ */
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProducts();
+      loadAnnouncements();
+      loadHours();
+    });
   </script>
 </body>
 </html>

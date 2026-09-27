@@ -487,42 +487,99 @@
   </div>
 
   <script>
+    // ── Redirect if already logged in ──
+    (function () {
+      const token = sessionStorage.getItem('pawpriority_token');
+      const user  = sessionStorage.getItem('pawpriority_user');
+      if (token && user) {
+        window.location.href = 'admin dashboard.html';
+      }
+    })();
+
+    // ── Show / hide password ──
     let pwVisible = false;
     function togglePw() {
       pwVisible = !pwVisible;
       const input = document.getElementById('password');
       const icon  = document.getElementById('toggleIcon');
-      input.type = pwVisible ? 'text' : 'password';
+      input.type       = pwVisible ? 'text' : 'password';
       icon.textContent = pwVisible ? '🙈' : '👁️';
     }
 
+    // ── Show / hide error message ──
+    function showError(message) {
+      const err = document.getElementById('errorMsg');
+      err.textContent = '⚠️ ' + message;
+      err.classList.add('show');
+    }
+
+    function hideError() {
+      document.getElementById('errorMsg').classList.remove('show');
+    }
+
+    // ── Main login handler ──
     function handleLogin() {
       const email = document.getElementById('email').value.trim();
       const pass  = document.getElementById('password').value;
-      const err   = document.getElementById('errorMsg');
+
+      hideError();
 
       if (!email || !pass) {
-        err.textContent = '⚠️ Please fill in both fields.';
-        err.classList.add('show');
+        showError('Please fill in both fields.');
         return;
       }
 
-      // Demo credentials
-      if (email === 'admin@pawpriority.com' && pass === 'admin123') {
-        err.classList.remove('show');
-        const btn = document.querySelector('.btn-login');
-        btn.textContent = '✓ Redirecting to Dashboard…';
-        btn.style.background = '#6aab6a';
-      } else {
-        err.textContent = '⚠️ Incorrect email or password. Please try again.';
-        err.classList.add('show');
-      }
+      const btn = document.querySelector('.btn-login');
+      btn.disabled    = true;
+      btn.textContent = 'Signing in…';
+
+      const formData = new FormData();
+      formData.append('email',    email);
+      formData.append('password', pass);
+
+      fetch('backend/user accounts/login.php', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            // Store session in sessionStorage
+            // (auto-clears when browser tab/window is closed)
+            sessionStorage.setItem('pawpriority_token', data.token);
+            sessionStorage.setItem('pawpriority_user',  JSON.stringify(data.user));
+
+            // Visual feedback then redirect
+            btn.textContent      = '✓ Redirecting to Dashboard…';
+            btn.style.background = '#6aab6a';
+
+            setTimeout(() => {
+              window.location.href = 'admin dashboard.html';
+            }, 800);
+          } else {
+            showError(data.message);
+          }
+        })
+        .catch(() => {
+          showError('Network error. Make sure the server is running and try again.');
+        })
+        .finally(() => {
+          // Only re-enable if login failed (success redirects away)
+          if (!sessionStorage.getItem('pawpriority_token')) {
+            btn.disabled    = false;
+            btn.textContent = 'Sign in to Dashboard';
+          }
+        });
     }
 
-    // Allow Enter key
+    // ── Allow Enter key to submit ──
     document.addEventListener('keydown', e => {
       if (e.key === 'Enter') handleLogin();
     });
+
+    // ── Clear error when user starts typing ──
+    document.getElementById('email').addEventListener('input', hideError);
+    document.getElementById('password').addEventListener('input', hideError);
   </script>
 </body>
 </html>
