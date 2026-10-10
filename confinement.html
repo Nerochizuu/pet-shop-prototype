@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confinement – PawPriority Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="shared ui.css" />
+  <script src="backend/login/session-guard.js"></script>
+</head>
+<body>
+<div class="dash">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><i class="ti ti-paw" aria-hidden="true"></i> PawPriority Admin</div>
+    <a href="admin dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</a>
+    <a href="appointments.html" class="nav-item"><i class="ti ti-calendar" aria-hidden="true"></i> Appointments</a>
+    <a href="customers.html" class="nav-item"><i class="ti ti-users" aria-hidden="true"></i> Customers</a>
+    <a href="admin packages.html" class="nav-item"><i class="ti ti-package" aria-hidden="true"></i> Packages</a>
+    <a href="custom-packages.html" class="nav-item"><i class="ti ti-adjustments" aria-hidden="true"></i> Custom Packages</a>
+    <a href="orders.html" class="nav-item"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Orders</a>
+    <a href="boarding.html" class="nav-item"><i class="ti ti-home" aria-hidden="true"></i> Boarding</a>
+    <a href="confinement.html" class="nav-item active"><i class="ti ti-first-aid-kit" aria-hidden="true"></i> Confinement</a>
+    <a href="inventory.html" class="nav-item"><i class="ti ti-box" aria-hidden="true"></i> Inventory</a>
+    <a href="sales.html" class="nav-item"><i class="ti ti-report-money" aria-hidden="true"></i> Sales &amp; Finance</a>
+    <a href="analytics.html" class="nav-item"><i class="ti ti-chart-bar" aria-hidden="true"></i> Analytics</a>
+    <a href="vaccinations.html" class="nav-item"><i class="ti ti-syringe" aria-hidden="true"></i> Vaccinations</a>
+    <a href="announcements.html" class="nav-item"><i class="ti ti-speakerphone" aria-hidden="true"></i> Announcements</a>
+    <a href="hours.html" class="nav-item"><i class="ti ti-clock" aria-hidden="true"></i> Operating Hours</a>
+    <a href="user account.html" class="nav-item"><i class="ti ti-user-circle" aria-hidden="true"></i> User Accounts</a>
+    <a href="#" id="logoutBtn" class="nav-item" style="margin-top:auto; border-top:0.5px solid rgba(255,255,255,0.15);"><i class="ti ti-logout" aria-hidden="true"></i> Log out</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>Confinement Admissions</h1>
+      <div class="topbar-right">
+        <span class="topbar-date" id="todayDate"></span>
+        <div class="notif-btn"><i class="ti ti-bell" aria-hidden="true"></i><span class="notif-dot"></span></div>
+        <div class="avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-first-aid-kit" aria-hidden="true"></i> Total admissions</div>
+        <div class="metric-value" id="metricTotalConfinement">—</div>
+        <div class="metric-sub">All time</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-clock" aria-hidden="true"></i> Pending</div>
+        <div class="metric-value" id="metricPendingConfinement">—</div>
+        <div class="metric-sub">Awaiting admission</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-stethoscope" aria-hidden="true"></i> Currently confined</div>
+        <div class="metric-value" id="metricCurrentlyConfined">—</div>
+        <div class="metric-sub">Admitted or under care</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label"><i class="ti ti-circle-check" aria-hidden="true"></i> Discharged</div>
+        <div class="metric-value" id="metricDischargedConfinement">—</div>
+        <div class="metric-sub">Completed cases</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title"><i class="ti ti-first-aid-kit" aria-hidden="true"></i>All admissions</span>
+        <div class="toolbar">
+          <div class="search-box">
+            <i class="ti ti-search" aria-hidden="true"></i>
+            <input type="text" id="confinementSearchInput" placeholder="Search owner or pet..."
+              style="border:none;background:transparent;outline:none;font-family:inherit;font-size:inherit;color:inherit;width:170px;" />
+          </div>
+          <div class="filter-btn"><i class="ti ti-filter" aria-hidden="true"></i> Filter</div>
+        </div>
+      </div>
+
+      <div class="tab-row" id="confinementTabs">
+        <div class="tab active" id="tab-conf-all" onclick="setConfinementFilter('all', this)">All</div>
+        <div class="tab" id="tab-conf-pending" onclick="setConfinementFilter('pending', this)">Pending</div>
+        <div class="tab" id="tab-conf-admitted" onclick="setConfinementFilter('admitted', this)">Admitted</div>
+        <div class="tab" id="tab-conf-under_care" onclick="setConfinementFilter('under_care', this)">Under care</div>
+        <div class="tab" id="tab-conf-discharged" onclick="setConfinementFilter('discharged', this)">Discharged</div>
+        <div class="tab" id="tab-conf-cancelled" onclick="setConfinementFilter('cancelled', this)">Cancelled</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Pet</th>
+              <th>Ward</th>
+              <th>Dates</th>
+              <th>Status</th>
+              <th>Medications</th>
+              <th>Details</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="confinementTableBody">
+            <tr>
+              <td colspan="8" style="text-align:center; padding:24px; color:#5A8A9A;">
+                Loading admissions...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span id="confinementResultsCount">Loading...</span>
+        <div class="page-btns">
+          <button class="page-btn"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Add Medication Entry Modal (admin-side, tied to a specific admission) -->
+<div class="modal-overlay" id="adminMedLogModal">
+  <div class="modal-content">
+    <h2>📋 Add Medication Entry</h2>
+    <p style="font-size:13px; color:#5A8A9A; text-align:center; margin-top:-8px;">
+      For <strong id="medLogPetNameDisplay"></strong>
+    </p>
+    <form class="appointment-form" id="adminMedLogForm" onsubmit="submitAdminMedLog(event)" style="margin-top:12px;">
+      <input type="hidden" id="medLogAdmissionId" name="admission_id" />
+      <input type="hidden" id="medLogPetNameHidden" name="pet_name" />
+      <div class="form-row">
+        <div><label>Medication</label><input type="text" name="medication_name" placeholder="e.g. Amoxicillin" required /></div>
+        <div><label>Dosage</label><input type="text" name="dosage" placeholder="e.g. 250mg" required /></div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Route</label>
+          <select name="route">
+            <option>Oral</option>
+            <option>IV</option>
+            <option>Subcutaneous</option>
+            <option>Topical</option>
+            <option>Intramuscular</option>
+          </select>
+        </div>
+        <div><label>Administered By</label><input type="text" name="administered_by" placeholder="e.g. Dr. Santos" required /></div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Status</label>
+          <select name="status">
+            <option value="Given">Given</option>
+            <option value="Pending">Pending</option>
+          </select>
+        </div>
+        <div></div>
+      </div>
+      <div class="modal-buttons">
+        <button type="button" onclick="closeAddMedLogModal()">Cancel</button>
+        <button type="submit">Save Entry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  document.getElementById('adminMedLogModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAddMedLogModal();
+  });
+
+  let confinementSearchTimeout;
+  document.getElementById('confinementSearchInput').addEventListener('input', function () {
+    clearTimeout(confinementSearchTimeout);
+    confinementSearchTimeout = setTimeout(() => loadConfinement(currentConfinementFilter), 300);
+  });
+</script>
+
+<script src="backend/confinement_admin/confinement-table.js"></script>
+
+</body>
+</html>
